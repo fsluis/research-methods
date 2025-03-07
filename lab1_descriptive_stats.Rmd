@@ -1,0 +1,362 @@
+---
+title: "Lab & Stats Weeks"
+author: "Frans van der Sluis and Mara Günther"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    css: styles.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, results = "hide")
+```
+
+## LAB SESSION 1: DESCRIPTIVE STATISTICS
+
+##### Topics
+
+- Frequency tables
+- Contingency tables
+- Visualisations
+- Descriptive statistics
+
+##### Resources
+
+- [ERDA](https://erda.dk)
+- [Statistical Inference via Data Science: A ModernDive into R and the Tidyverse (Second Edition)](https://moderndive.com/v2/index.html)
+- [Basic R Guide for NSC Statistics](https://bookdown.org/dli/rguide/)
+
+<mark>Todo: Include dplyr resource and link throughout exercises</mark>
+<mark>Todo: Add bonus exercises</mark>
+<mark>Todo: Review & add more exercises</mark>
+
+#### Getting started with ERDA
+
+1. Open and log in to [ERDA](https://erda.dk) with your KU mail
+2. Click on “jupyter”, then “Start DAG”
+3. Now, JupyterLab will launch. When it has launched, find and click on RStudio.
+4. Start a new project with a new working directory
+5. Start a new RScript and save it in the directory
+
+#### Getting ready in RStudio
+
+Install and load the necessary libraries for this session. You can read more about libraries [here](https://moderndive.com/v2/getting-started.html). 
+- Here is an example for readxl, a library needed to read Excel files:
+
+```{r load-readxl}
+install.packages("readxl", repo="http://cran.dk.r-project.org")
+library(readxl)
+```
+
+<div class="question">
+1. After installing and loading this library, try to install and load the following libraries:
+</div>
+<div class="question">
+- Tidyverse -> a collection of R packages designed for data science and useful for quantitative data analysis
+- Moments -> for descriptive statistics
+</div>
+
+Now, let's take a first look at our data. Place the file “questionnaire_data_2023.xlsx” in the directory you are currently working in:
+
+```{r load-libraries, echo=FALSE}
+#setwd("~/work/Methods")
+library(tidyverse)
+library(moments)
+```
+```{r load-data}
+questionnaire_data <- read_excel("questionnaire_data_R_2024.xlsx")
+glimpse(questionnaire_data)
+```
+
+The function glimpse is designed to give you an overview of the data set. It gives basic info on the data set and allows a peak at the various columns and types of variables and values they hold.
+
+You should now also see the data in the Environment tab. In RStudio, click on it and see what happens.
+
+#### Missing data
+Missing values in R are represented by NA. We can use the is.na() function to find missing values:
+
+```{r missing-data}
+is.na(questionnaire_data)
+```
+
+Try it out: Do you spot any missing values in our data set?
+
+The is.na() function returns a dataframe of booleans (0s and 1s). For each row/column in our dataframe, it tells us whether that value is an NA. In combination with the sum() function you can count for the missing values, using the following code.
+```{r missing-data-sum}
+sum(is.na(questionnaire_data))
+```
+
+<div class="question">
+2. How many missing values are there in total in our data set?
+</div>
+
+#### Frequency distribution tables
+
+One way of displaying the way values of a particular variable are distributed is constructing a frequency distribution.
+
+- In R, we can use count whenever we want to count the number of observations in a data set. 
+- Let's take a look how many native English speaker there are in our data set:
+
+```{r frequency-table}
+questionnaire_data %>% count(English_as_first_language)
+```
+
+<div class="question">
+3. Try the same for the 'Device' variable in our data. 
+</div>
+
+- The ``%>%`` operator is from the tidyverse library. This is a very powerful library for summarizing and manipulating data. 
+<mark>TODO: add link for more information</mark>.
+
+#### Bar charts
+
+We have already seen how we can let R count and generate a frequency table, but some information can be grasped more quickly if it is presented in graphic form rather than in a table of numbers. So now, we will try to make a basic bar chart for the Gender variable.
+
+For this we can use a graphic package which is already a part of the Tidyverse: ggplot.
+
+This package has a [distinct grammar](https://moderndive.com/v2/viz.html) that needs to be used to create graphs:
+
+- data: the dataset containing the variables of interest.
+
+- geom: the geometric object in question. This refers to the type of object we can observe in a plot. For example: points, lines, and bars.
+
+- aes: aesthetic attributes of the geometric object. For example, x/y position, color, shape, and size. Aesthetic attributes are mapped to variables in the dataset.
+
+With this in mind, let's create our very first bart chart:
+
+```{r bar-chart-gender, fig.cap="Gender Distribution", fig.width=5, fig.height=4, out.width="50%", fig.align="center"}
+ggplot(data = questionnaire_data, aes(x = Sex, fill = Sex)) +
+  geom_bar() + 
+  ggtitle("Gender Distribution") +
+  labs(x = "Gender")
+```
+
+As you can see in the bar chart, our code also adds a title to the chart and a label to the x-axis.
+
+Visualisations like these will always be loaded in the right bottom. Here you can easily save images to your computer by clicking on export. 
+
+If you want to play around with the bar chart and change it´s design, look [here](https://bookdown.org/dli/rguide/bar-graph.html#ggplot2-bar-graph).
+
+#### Re-coding variables
+
+<div class="question">
+4. Try to make a frequency table for MESSAGES PER DAY using count.
+</div>
+
+This does not really reveal any trends in our data. Instead let´s re-code and re-group this variable.
+
+For this we can the tidyverse/dplyr function mutate. This function creates a new column in our data set that is called MessageCategory.
+
+```{r recode-messages}
+questionnaire_data <- questionnaire_data %>%
+  mutate(MessagesCategory = case_when(
+    Messages_per_day <= 5 ~ "5 or less",
+    Messages_per_day <= 10 ~ "6 to 10",
+    TRUE ~ "More than 10"
+  ))
+```
+
+With this new variable we can even make a bar chart:
+
+```{r bar-chart-messages, fig.cap="Messages per day", fig.width=5, fig.height=4, out.width="50%", fig.align="center"}
+ggplot(data = questionnaire_data, aes(x = MessagesCategory)) +
+  geom_bar(fill = "steelblue") + 
+  labs(x = "Messages per day")
+```
+
+#### But what if you only want to look at one participant? 
+
+For this R has a simple solution: the filter function. Filter can keeps or discards rows in our data set.
+
+Let's take a look at our first participant with the unique ID 5193237.
+
+```{r filter-participant, fig.cap="Messages per day for Participant 5193237", fig.width=5, fig.height=4, out.width="50%", fig.align="center"}
+ggplot(data = questionnaire_data %>% filter(ParticipantID == 5193237), aes(x = MessagesCategory)) +
+  geom_bar(fill = "steelblue") + 
+  labs(x = "Messages per day")
+```
+
+<div class="question">
+5. Can you repeat this step with another participant?
+</div>
+
+#### Line chart
+
+You can use R to create various other charts and data visualisation. We can for example make a line chart for messages per day in relation to the number of respondents.
+
+For this we need to count the messages per day and then create a graph using ggplot. Pay attention to the new part geom_line. Geom_line is always used for line charts.
+
+```{r line-chart, fig.cap="Line Chart: Messages per day", fig.width=5, fig.height=4, out.width="50%", fig.align="center"}
+questionnaire_data %>%
+  count(Messages_per_day) %>%
+  ggplot(aes(x = Messages_per_day, y = n)) +
+  geom_line(color = "black") +
+  labs(x = "Messages per day", y = "Number of respondents") +
+  ggtitle("Messages per day")
+```
+
+<div class="question">
+6. Do you think line graphs are better at visualizing some types of variables over others?
+</div>
+
+#### Pie charts
+
+Pie charts are another common way of presenting nominal and ordinal data graphically.
+
+GGplot does not have a specific geometric function to build pie charts. The key is to go back to geom_bar( ) and add the polar coordinate function to make the graph circular.
+
+You can read more about this [here](https://bookdown.org/dli/rguide/pie-chart.html#ggplot2-pie-chart).
+
+```{r pie-chart, fig.cap="Pie Chart: Messages Category", fig.width=5, fig.height=4, out.width="50%", fig.align="center"}
+ggplot(data = questionnaire_data, aes(x = "", fill = MessagesCategory)) + 
+  geom_bar(stat = "count", width = 1) + 
+  coord_polar("y") +
+  theme_void()
+```
+
+#### Histogram
+
+To draw a histogram in ggplot2, we use the geometric function, geom_histogram. With this we can for example create a histogram for the age distribution in our data.
+
+```{r histogram, fig.cap="Age Distribution", fig.width=5, fig.height=4, out.width="50%", fig.align="center"}
+ggplot(data = questionnaire_data, aes(x = Age))+
+  geom_histogram(binwidth = 5, color = "black", fill = "light green") +
+  ggtitle("Age Distribution")
+```
+
+<mark>Histogram with density line</mark>
+<mark>Population pyramid</mark>
+
+#### Contingency tables
+
+Contingency tables show frequencies for particular combinations of values of two discrete random variables X and Y. In our dataset that could be gender and messagescategory.
+
+Using count can create this for us.
+
+```{r contingency-table}
+questionnaire_data %>% count(Sex, MessagesCategory)
+```
+
+<div class="question">
+7. Take a look at the output. What can we learn about gender and message category?
+</div>
+
+#### Measures of central tendency and dispersion
+
+Calculating measures of central tendency and dispersion using R is relatively easy.
+
+With the following code, you can for example calculate the mean, median, mode, standard deviation, minimum and maximum values for messages per day:
+
+```{r central-tendency}
+mean(questionnaire_data$Messages_per_day)
+median(questionnaire_data$Messages_per_day)
+as.numeric(names(sort(table(questionnaire_data$Messages_per_day), decreasing = TRUE)[1])) 
+
+sd(questionnaire_data$Messages_per_day)
+min(questionnaire_data$Messages_per_day)
+max(questionnaire_data$Messages_per_day)
+```
+
+## Keyboard data
+Let's now input the keyboard data file. It's called 'keyboard_data_R_2024.csv' and can be imported using the command 'read.csv(file="keyboard_data_R_2024.csv")'. Be sure sure to assign the output to a new variable, which we'll call 'keyboard_data'.
+<div class="question">
+8. Import keyboard_data_R_2024.csv to a variable named keyboard_data.
+</div>
+The import of this csv file is similar to how we imported the previous excel file, so look back to that definition for an example.
+
+```{r load-keyboard-data, echo=FALSE}
+keyboard_data <- read.csv(file="keyboard_data_R_2024.csv")
+```
+
+#### Long format data
+The questionnaire data is structured in a 'wide' format: each row represents a participant, and each observation is put in a column. Instead, the keyboard_data is in 'long' format. Here, each row represents a trial, which is one attempt to write the sentence 'the quick brown fox jumps over the lazy dog'. 
+
+<div class="question">
+9. Explore the data using the glimpse function and/or by opening the dataset in RStudio:
+- How many rows are there per participant?
+- What happened to the questionnaire data, which was not measured per trial but only once per participant?
+- Which columns identify a row? ParticipantID is no longer unique, so which other columns are needed in addition to ParticipantID to know which trial we are looking at?
+</div>
+
+#### More on measures of central tendency and dispersion: The OPTI-keyboard
+
+
+You can use this code to calculate the measures of central tendency and dispersion for the OPTI-keyboard. Let's first filter our data to only include trials with the OPTI-keyboard:
+```{r filter_opti}
+opti_data <- keyboard_data %>% filter(Keyboard == "OPTI")
+qwerty_data <- keyboard_data %>% filter(Keyboard == "QWERTY")
+```
+
+We can use tidyverse/dplyr's summarize function to derive various statistical moments from our data:
+
+```{r stats_table, results="markup"}
+opti_data %>% summarize(
+    Mean = mean(WPM, na.rm = TRUE),
+    Median = median(WPM, na.rm = TRUE),
+    SD = sd(WPM, na.rm = TRUE),
+    Variance = var(WPM, na.rm = TRUE),
+    Minimum = min(WPM, na.rm = TRUE),
+    Maximum = max(WPM, na.rm = TRUE),
+    Skewness = skewness(WPM, na.rm = TRUE),
+    Kurtosis = kurtosis(WPM, na.rm = TRUE)
+)
+```
+
+<div class="question">
+10. Try to look at this table and interpret it´s results: What can we learn about our data?
+</div>
+
+Now that we calculated the measures of central tendency and dispersion for the OPTI-keyboard, we can also look at the QWERT-keyboard.
+
+<div class="question">
+11. Can you repeat the steps and calculate the measures for the QWERT-keyboard?
+</div>
+
+#### Tests of normality: OPTI keyboard
+
+The best way to investigate kurtosis and skewness and normality is through Kolmogorov-Smirnov statistic and the Shapiro-Wilk Test.
+
+Kolmogorov-Smirnov statistic is done through `ks.test()` in R. For this we will need to specify the normal distribution: `pnorm`.
+
+Shapiro-Wilk Test s available in R via the `shapiro.test()` function.
+
+We will try these tests in R for OPTI. Try to run the code. You will notice that the data in OPTI does not follow a normal distribution. What do we do now?
+
+```{r normality-tests}
+# Kolmogorov-Smirnov
+ks.test(opti_data$WPM, "pnorm", mean = mean(opti_data$WPM), sd = sd(opti_data$WPM))
+
+# Shapiro-Wilk
+shapiro.test(opti_data$WPM)
+```
+
+#### Taking a look at outliers
+
+```{r histogram-opti1, fig.cap="Histogram of OPTI", fig.width=5, fig.height=4, out.width="50%", fig.align="center"}
+ggplot(data = opti_data, aes(x = WPM)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "light green") +
+  labs(x = "OPTI", y = "Frequency")
+```
+
+```{r qqplot-opti1, fig.cap="Q-Q Plot of OPTI", fig.width=5, fig.height=4, out.width="50%", fig.align="center"}
+qqnorm(opti_data$WPM, main = "Q-Q Plot of OPTI")
+qqline(opti_data$WPM, col = "red")
+```
+
+```{r boxplot-opti1, fig.cap="Boxplot of OPTI_1", fig.width=5, fig.height=4, out.width="50%", fig.align="center"}
+ggplot(opti_data, aes(y = WPM)) +
+  geom_boxplot(fill = "lightgreen", color = "black", width = 0.5) +
+  labs(title = "Boxplot of WPM", y = "WPM")
+```
+
+A way to check what is going on here is through data visualizations. I have noted down the code for a histogram, Q-Q plot and boxplot.
+
+<div class="question">
+11. Take a look at these three visualisations: Can you see why the data in OPTI is not normally distributed?
+</div>
+
+<div class="question">
+12. Can you repeat these steps for our QWERTY keyboard? Are our data for QWERT normaly distributed, and why (not) so?
+</div>
+
+<mark>Todo: Outlier removal (or not!)</mark>
