@@ -284,8 +284,11 @@ The questionnaire data is structured in a 'wide' format: each row represents a p
 You can use this code to calculate the measures of central tendency and dispersion for the OPTI-keyboard. Let's first filter our data to only include trials with the OPTI-keyboard:
 ```{r filter_opti}
 opti_data <- keyboard_data %>% filter(Keyboard == "OPTI")
+```
+```{r filter_qwerty, echo=FALSE}
 qwerty_data <- keyboard_data %>% filter(Keyboard == "QWERTY")
 ```
+
 
 We can use tidyverse/dplyr's summarize function to derive various statistical moments from our data:
 

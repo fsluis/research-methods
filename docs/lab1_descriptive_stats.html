@@ -704,8 +704,7 @@ OPTI-keyboard</h4>
 <p>You can use this code to calculate the measures of central tendency
 and dispersion for the OPTI-keyboard. Let’s first filter our data to
 only include trials with the OPTI-keyboard:</p>
-<pre class="r"><code>opti_data &lt;- keyboard_data %&gt;% filter(Keyboard == &quot;OPTI&quot;)
-qwerty_data &lt;- keyboard_data %&gt;% filter(Keyboard == &quot;QWERTY&quot;)</code></pre>
+<pre class="r"><code>opti_data &lt;- keyboard_data %&gt;% filter(Keyboard == &quot;OPTI&quot;)</code></pre>
 <p>We can use tidyverse/dplyr’s summarize function to derive various
 statistical moments from our data:</p>
 <pre class="r"><code>opti_data %&gt;% summarize(
