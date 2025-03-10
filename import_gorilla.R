@@ -3,7 +3,6 @@ year = '2024'
 # Load necessary libraries
 library(tidyverse)  # includes dplyr, tidyr, readr, etc.
 library(stringr)
-library(openxlsx)
 #setwd("~/work/Methods")
 
 # Step 1. Read in the task CSV files (all four files)
@@ -30,7 +29,7 @@ key_presses_df = task_df %>%
     Keyboard = if_else(str_detect(`Screen Name`, "qwerty"), "QWERTY",
                        if_else(str_detect(`Screen Name`, "opti"), "OPTI", NA_character_)),
     # Extract the trial order number from 'Screen Name'
-    TrialOrder = as.integer(str_extract(`Screen Name`, "\\d+"))
+    Trial_order = as.integer(str_extract(`Screen Name`, "\\d+"))
   )
 
 
@@ -40,18 +39,18 @@ key_presses_df = task_df %>%
 # Each trial (i.e. one sentence typed) has 43 letter-level reaction time rows.
 # We group by ParticipantID, Screen Name (and the extracted variables) and sum the reaction times.
 aggregated_df <- key_presses_df %>%
-  group_by(`Participant Private ID`, `Screen Name`, Keyboard, TrialOrder, `randomiser-8lzr`) %>%
-  summarize(total_reaction_time = sum(`Reaction Time`, na.rm = TRUE), .groups = "drop")
+  group_by(`Participant Private ID`, `Screen Name`, Keyboard, Trial_order, `randomiser-8lzr`) %>%
+  summarize(total_Reaction_time = sum(`Reaction Time`, na.rm = TRUE), .groups = "drop")
 
 
 
 # ----------------------------
 # Step 5. Compute Words Per Minute (WPM) and rename condition
 # ----------------------------
-# Using the formula: WPM = 516000 / total_reaction_time
+# Using the formula: WPM = 516000 / total_Reaction_time
 aggregated_df <- aggregated_df %>%
   mutate(
-    WPM = (43/5) / ((total_reaction_time/1000)/60), #516000 / total_reaction_time,
+    WPM = (43/5) / ((total_Reaction_time/1000)/60), #516000 / total_Reaction_time,
     Condition = `randomiser-8lzr`  # Rename for clarity
   ) 
 
@@ -69,22 +68,41 @@ final_df_clean <- final_df %>%
     Sex = sex,
     Age = age,
     English_as_first_language = `language`,
-    Done_Before = DoneBefore,
+    Done_before = DoneBefore,
     Device = device,
-    Hours_of_Computer_Use_Per_Day = ComputerUseHours,
-    Use_Mobile_phone = UseSmartPhone,
+    Hours_of_computer_use_per_day = ComputerUseHours,
+    Use_mobile_phone = UseSmartPhone,
     Send_text_on_phone = sendText,
     Messages_per_day = numberMessages,
-    Reaction_Time = total_reaction_time
+    Reaction_time = total_Reaction_time
   ) %>%
   select(
-    ParticipantID, group, Keyboard, TrialOrder, Reaction_Time, WPM, Sex, Age, English_as_first_language, Done_Before, Device,
-    Hours_of_Computer_Use_Per_Day, Use_Mobile_phone, Send_text_on_phone,
+    ParticipantID, group, Keyboard, Trial_order, Reaction_time, WPM, Sex, Age, English_as_first_language, Done_before, Device,
+    Hours_of_computer_use_per_day, Use_mobile_phone, Send_text_on_phone,
     Messages_per_day
-  )
+  ) %>%
+  filter(!is.na(Keyboard))
 
 # Preview the cleaned data frame
 print(head(final_df_clean))
+
+library(tidyr)
+library(dplyr)
+
+keyboard_data_wide <- final_df_clean %>%
+  filter(!is.na(Keyboard)) %>%
+  pivot_wider(
+    # Use all columns except the ones you want to pivot as id_cols.
+    id_cols = c(ParticipantID, group, Trial_order, Sex, Age, English_as_first_language,
+                Done_before, Device, Hours_of_computer_use_per_day, Use_mobile_phone,
+                Send_text_on_phone, Messages_per_day),
+    names_from = Keyboard,
+    values_from = c(WPM, Reaction_time),
+    names_glue = "{Keyboard}_{.value}"
+  )
+
+# Preview the wide-format data frame
+head(keyboard_data_wide)
 
 
 # Step 7. Save the cleaned data to a new CSV file.
@@ -94,15 +112,15 @@ write_csv(final_df_clean, glue::glue('keyboard_data_R_{year}.csv'))
 # EXPORT TO EXCEL / SPSS WIDE FORMAT
 
 wide_trial = final_df_clean %>%
-  select(ParticipantID, Keyboard, TrialOrder, WPM)  %>%
+  select(ParticipantID, Keyboard, Trial_order, WPM)  %>%
   filter(!is.na(Keyboard)) %>%
-  pivot_wider(names_from = c(Keyboard, TrialOrder), 
+  pivot_wider(names_from = c(Keyboard, Trial_order), 
               values_from = WPM,
               names_sep = "_") 
 
 participant_info <- final_df_clean %>%
-  select(ParticipantID, group, Sex, Age, English_as_first_language, Done_Before, Device,
-         Hours_of_Computer_Use_Per_Day, Use_Mobile_phone, Send_text_on_phone, Messages_per_day) %>%
+  select(ParticipantID, group, Sex, Age, English_as_first_language, Done_before, Device,
+         Hours_of_computer_use_per_day, Use_mobile_phone, Send_text_on_phone, Messages_per_day) %>%
   distinct()
 
 
@@ -116,5 +134,6 @@ print(head(wide_df))
 
 # Step D: Save the wide-format data to an Excel file
 
+library(openxlsx)
 write.xlsx(wide_df, glue::glue('keyboard_experiment_spss_{year}.xlsx'))
 write.xlsx(participant_info, glue::glue('questionnaire_data_R_{year}.xlsx'))

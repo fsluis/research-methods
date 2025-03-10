@@ -1,12 +1,36 @@
+/* Make H1 look like H2 */
+h1 {
+  font-size: 1.5em;   /* typical H2 size */
+  font-weight: bold;
+  margin: 0.83em 0;   /* adjust as needed */
+  color: inherit;     /* or specify a color if desired */
+}
+
+/* Make H2 look like H4 */
+h2 {
+  font-size: 1.12em;  /* typical H4 size */
+  font-weight: bold;
+  margin: 1em 0;
+  color: #4169E1;     /* RoyalBlue, same as H4, H5, H6 */
+}
+
+/* Existing styles for H4, H5, H6 */
 h4, h5, h6 {
   color: #4169E1; /* RoyalBlue */
 }
 
+/* Style the .question class with a purple border */
 .question {
-  color: #800080;
-  font-weight: bold;
+color: #800080;
+  max-width: 90%;
   margin: 1em 0;
+  border: 2px solid #800080; /* purple border */
+  padding: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+/* Preformatted text styles */
 pre {
   background-color: #000000;
   color: #FFFFFF;
