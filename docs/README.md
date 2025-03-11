@@ -2,7 +2,16 @@
 
 Welcome to the repository for the R exercises used in the **Research Methods and Experimental Design** course, part of the **Cognition & Communication** master program at Copenhagen University.
 
-[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+<p align="left">
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+    <img src="https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg" height="20" alt="License: CC BY-SA 4.0">
+  </a>
+  <a href="https://fsluis.github.io/research-methods/">
+    <img src="https://user-images.githubusercontent.com/33416429/92813512-27f0bb80-f376-11ea-8562-ee2b3e416aec.png" height="30" alt="Available on Github">
+  </a>
+</p>
+
+
 
 ## Overview
 
