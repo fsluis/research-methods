@@ -17,7 +17,7 @@ questionnaire_file <- "questionnaire_data_R_2024.xlsx"
 
 <p align="left">
   <a href="https://creativecommons.org/licenses/by-sa/4.0/">
-    <img src="License-CCBYSA4-lightgrey.svg" height="20" alt="License: CC BY-SA 4.0">
+    <img src="License-CCBYSA4-lightgrey.svg" height="30" alt="License: CC BY-SA 4.0">
   </a>
   <a href="https://github.com/fsluis/research-methods">
     <img src="GitHub_Logo.png" height="30" alt="Available on Github">

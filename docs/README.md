@@ -4,7 +4,7 @@ Welcome to the website with the R exercises used in the **Research Methods and E
 
 <p align="left">
   <a href="https://creativecommons.org/licenses/by-sa/4.0/">
-    <img src="https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg" height="20" alt="License: CC BY-SA 4.0">
+    <img src="https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg" height="30" alt="License: CC BY-SA 4.0">
   </a>
   <a href="https://github.com/fsluis/research-methods">
     <img src="https://user-images.githubusercontent.com/33416429/92813512-27f0bb80-f376-11ea-8562-ee2b3e416aec.png" height="30" alt="Available on Github">
