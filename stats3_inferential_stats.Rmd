@@ -15,6 +15,15 @@ questionnaire_file <- "questionnaire_data_R_2024.xlsx"
 
 # STATS SESSION 3: INFERENTIAL STATISTICS (PART 2)
 
+<p align="left">
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+    <img src="License-CCBYSA4-lightgrey.svg" height="20" alt="License: CC BY-SA 4.0">
+  </a>
+  <a href="https://fsluis.github.io/research-methods/">
+    <img src="GitHub_Logo.png" height="30" alt="Available on Github">
+  </a>
+</p>
+
 ## Changelog
 - 2025 Version for R, extended with interaction effects in regression modeling (*Frans van der Sluis*)
 - 2019 Original version for SPSS (*Lorna Wildegaard*)

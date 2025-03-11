@@ -14,6 +14,16 @@ keyboard_file <- "keyboard_data_R_2024.csv"
 
 # STATS SESSION 2: INFERENTIAL STATISTICS (PART 1)
 
+<p align="left">
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+    <img src="License-CCBYSA4-lightgrey.svg" height="20" alt="License: CC BY-SA 4.0">
+  </a>
+  <a href="https://fsluis.github.io/research-methods/">
+    <img src="GitHub_Logo.png" height="30" alt="Available on Github">
+  </a>
+</p>
+
+
 ## Changelog
 - 2025 Version for R, including long-format data (*Frans van der Sluis*)
 - 2019 Original version for SPSS (*Lorna Wildegaard*)

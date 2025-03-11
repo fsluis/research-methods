@@ -6,27 +6,33 @@ Welcome to the repository for the R exercises used in the **Research Methods and
 
 ## Overview
 
-This site provides a collection of R-based exercises designed to give you hands-on experience with:
-- Descriptive statistics
-- Inferential statistics
+This repository provides a collection of R-based exercises designed to give students hands-on experience with **descriptive statistics** and **inferential statistics**.
 
-The materials are intended to complement our course lectures and help you deepen your understanding of statistical methods and research design.
+The exercises are based on a keyboard typing experiment originally developed by MacKenzie (see [sources](#sources)). The experiment, which evaluates text entry performance on two keyboard layouts (OPTI and QWERTY), is detailed [here](http://www.yorku.ca/mack/cascon2007.html) and discussed in the book [Human-Computer Interaction (2013)](https://www.sciencedirect.com/book/9780124058651/human-computer-interaction). The experiment was implemented using [Gorilla.sc](https://gorilla.sc/).
+ 
+## Repository Structure
+📂 **docs/** — Contains formatted HTML files for public viewing. The website is hosted at:  
+🔗 **[fsluis.github.io/research-methods](https://fsluis.github.io/research-methods/)**  
 
-## Statistics Exercises
+📂 **scripts/** — Includes:
+- `import_gorilla.R` → Imports and cleans Gorilla.sc export files  
 
-You can access the following lab exercises directly through your browser:
+📂 **RMarkdown Files**:
+- `stats1_descriptive_stats.Rmd` → Descriptive statistics
+- `stats2_inferential_stats.Rmd` → Inferential statistics (Part 1)
+- `stats3_inferential_stats.Rmd` → Inferential statistics (Part 2)
 
-- [Stats 1: Descriptive Statistics](https://fsluis.github.io/research-methods/stats1_descriptive_stats.html)
-- [Stats 2: Inferential Statistics (Part 1)](https://fsluis.github.io/research-methods/stats2_inferential_stats.html)
-- [Stats 3: Inferential Statistics (Part 2)](https://fsluis.github.io/research-methods/stats3_inferential_stats.html)
+## References
+- MacKenzie, I. S. (2007). [CASCON 2007 Paper: Evaluating Text Entry Performance](http://www.yorku.ca/mack/cascon2007.html).
+- MacKenzie, I. S. (2013). *[Human-Computer Interaction](https://www.sciencedirect.com/book/9780124058651/human-computer-interaction)*. Morgan Kaufmann.
 
-**Feedback and Questions:** If you have any questions or feedback, please feel free to  contact the course instructors.
+## Feedback & Contact
+If you have any questions or feedback, please contact the course instructors.
 
-Enjoy exploring the exercises and happy coding!
+Enjoy exploring the exercises, and happy coding! 🚀  
 
 ---
 
-**Frans van der Sluis**
-
+**Frans van der Sluis**  
 Copenhagen University  
-Cognition & Communication Master Program
+Cognition & Communication Master Program  
