@@ -23,7 +23,7 @@ The exercises are based on a keyboard typing experiment originally developed by 
 - `stats3_inferential_stats.Rmd` → Inferential statistics (Part 2)
 
 ## References
-- MacKenzie, I. S. (2007). [CASCON 2007 Paper: Evaluating Text Entry Performance](http://www.yorku.ca/mack/cascon2007.html).
+- MacKenzie, I. S., and Read, J. C. (2007). *Using paper mockups for evaluating soft keyboard layouts*. Proceedings of CASCON 2007, pp. 98-108. Toronto: IBM Canada Ltd. [HTML](http://www.yorku.ca/mack/cascon2007.html).
 - MacKenzie, I. S. (2013). *[Human-Computer Interaction](https://www.sciencedirect.com/book/9780124058651/human-computer-interaction)*. Morgan Kaufmann.
 
 ## Feedback & Contact
