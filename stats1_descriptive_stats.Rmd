@@ -1,6 +1,6 @@
 ---
 title: "Lab & Stats Weeks"
-author: "Frans van der Sluis and Mara Günther"
+author: "Frans van der Sluis, Mara Günther, Lorna Wildegaard (2019 version)"
 date: "`r Sys.Date()`"
 output: 
   html_document:
@@ -9,28 +9,37 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, results = "hide")
+keyboard_file <- "keyboard_data_R_2024.csv"
+questionnaire_file <- "questionnaire_data_R_2024.xlsx" # replace this one manually as well, cause it's in a code block
 ```
 
-## LAB SESSION 1: DESCRIPTIVE STATISTICS
+# STATS SESSION 1: DESCRIPTIVE STATISTICS
 
-##### Topics
+## Topics
 
 - Frequency tables
 - Contingency tables
 - Visualisations
 - Descriptive statistics
 
-##### Resources
+## Resources
 
 - [ERDA](https://erda.dk)
 - [Statistical Inference via Data Science: A ModernDive into R and the Tidyverse (Second Edition)](https://moderndive.com/v2/index.html)
 - [Basic R Guide for NSC Statistics](https://bookdown.org/dli/rguide/)
 
+<!--
+## Todos
 <mark>Todo: Include dplyr resource and link throughout exercises</mark>
 <mark>Todo: Add bonus exercises</mark>
 <mark>Todo: Review & add more exercises</mark>
+<mark>Histogram with density line</mark>
+<mark>Todo: Outlier removal (or not!)</mark>
+-->
 
-#### Getting started with ERDA
+# Getting started
+
+## Getting started with ERDA
 
 1. Open and log in to [ERDA](https://erda.dk) with your KU mail
 2. Click on “jupyter”, then “Start DAG”
@@ -38,7 +47,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, results = "
 4. Start a new project with a new working directory
 5. Start a new RScript and save it in the directory
 
-#### Getting ready in RStudio
+## Getting ready in RStudio
 
 Install and load the necessary libraries for this session. You can read more about libraries [here](https://moderndive.com/v2/getting-started.html). 
 - Here is an example for readxl, a library needed to read Excel files:
@@ -50,13 +59,13 @@ library(readxl)
 
 <div class="question">
 1. After installing and loading this library, try to install and load the following libraries:
-</div>
-<div class="question">
+
 - Tidyverse -> a collection of R packages designed for data science and useful for quantitative data analysis
 - Moments -> for descriptive statistics
 </div>
 
-Now, let's take a first look at our data. Place the file “questionnaire_data_2023.xlsx” in the directory you are currently working in:
+# Questionnaire data
+Now, let's take a first look at our data. Place the file “`r questionnaire_file`” in the directory you are currently working in:
 
 ```{r load-libraries, echo=FALSE}
 #setwd("~/work/Methods")
@@ -72,7 +81,7 @@ The function glimpse is designed to give you an overview of the data set. It giv
 
 You should now also see the data in the Environment tab. In RStudio, click on it and see what happens.
 
-#### Missing data
+## Missing data
 Missing values in R are represented by NA. We can use the is.na() function to find missing values:
 
 ```{r missing-data}
@@ -90,7 +99,7 @@ sum(is.na(questionnaire_data))
 2. How many missing values are there in total in our data set?
 </div>
 
-#### Frequency distribution tables
+## Frequency distribution tables
 
 One way of displaying the way values of a particular variable are distributed is constructing a frequency distribution.
 
@@ -108,7 +117,7 @@ questionnaire_data %>% count(English_as_first_language)
 - The ``%>%`` operator is from the tidyverse library. This is a very powerful library for summarizing and manipulating data. 
 <mark>TODO: add link for more information</mark>.
 
-#### Bar charts
+## Bar charts
 
 We have already seen how we can let R count and generate a frequency table, but some information can be grasped more quickly if it is presented in graphic form rather than in a table of numbers. So now, we will try to make a basic bar chart for the Gender variable.
 
@@ -137,7 +146,7 @@ Visualisations like these will always be loaded in the right bottom. Here you ca
 
 If you want to play around with the bar chart and change it´s design, look [here](https://bookdown.org/dli/rguide/bar-graph.html#ggplot2-bar-graph).
 
-#### Re-coding variables
+## Re-coding variables
 
 <div class="question">
 4. Try to make a frequency table for MESSAGES PER DAY using count.
@@ -150,9 +159,9 @@ For this we can the tidyverse/dplyr function mutate. This function creates a new
 ```{r recode-messages}
 questionnaire_data <- questionnaire_data %>%
   mutate(MessagesCategory = case_when(
-    Messages_per_day <= 5 ~ "5 or less",
-    Messages_per_day <= 10 ~ "6 to 10",
-    TRUE ~ "More than 10"
+    Messages_per_day <= 10 ~ "10 or less",
+    Messages_per_day >= 11 & Messages_per_day <= 50 ~ "11 to 50",
+    Messages_per_day > 50 ~ "More than 50"
   ))
 ```
 
@@ -164,7 +173,7 @@ ggplot(data = questionnaire_data, aes(x = MessagesCategory)) +
   labs(x = "Messages per day")
 ```
 
-#### But what if you only want to look at one participant? 
+## But what if you only want to look at one participant?
 
 For this R has a simple solution: the filter function. Filter can keeps or discards rows in our data set.
 
@@ -180,7 +189,7 @@ ggplot(data = questionnaire_data %>% filter(ParticipantID == 5193237), aes(x = M
 5. Can you repeat this step with another participant?
 </div>
 
-#### Line chart
+## Line chart
 
 You can use R to create various other charts and data visualisation. We can for example make a line chart for messages per day in relation to the number of respondents.
 
@@ -199,7 +208,7 @@ questionnaire_data %>%
 6. Do you think line graphs are better at visualizing some types of variables over others?
 </div>
 
-#### Pie charts
+## Pie charts
 
 Pie charts are another common way of presenting nominal and ordinal data graphically.
 
@@ -214,7 +223,7 @@ ggplot(data = questionnaire_data, aes(x = "", fill = MessagesCategory)) +
   theme_void()
 ```
 
-#### Histogram
+## Histogram
 
 To draw a histogram in ggplot2, we use the geometric function, geom_histogram. With this we can for example create a histogram for the age distribution in our data.
 
@@ -224,10 +233,31 @@ ggplot(data = questionnaire_data, aes(x = Age))+
   ggtitle("Age Distribution")
 ```
 
-<mark>Histogram with density line</mark>
-<mark>Population pyramid</mark>
+## Population Pyramids (Alternative: Faceted Bar Chart in R)
 
-#### Contingency tables
+A population pyramid is a specialized type of histogram that splits a distribution into two groups and mirrors them. While creating an exact population pyramid in R is complex (see [here](https://www.njtierney.com/post/2022/08/09/ggplot-pyramid/) for an explanation), we can achieve a similar effect by using faceted histograms to compare distributions side by side.
+
+In the previous exercise, you created a histogram for Age. Now, we will split the distribution by gender by adding `facet_wrap(~ Sex)` to our plot definition. This function creates separate plots for each category of Sex, aligning their x and y axes for easy comparison:
+
+```{r faceted-histogram, fig.cap="Age Distribution", fig.width=8, fig.height=4, out.width="80%", fig.align="center"}
+ggplot(data = questionnaire_data, aes(x = Age))+
+  facet_wrap(~ Sex) +
+  geom_histogram(binwidth = 5, color = "black", fill = "light green") +
+  ggtitle("Faceted Age Distribution")
+```
+
+Let's expand our plot definition a bit further:
+<div class="question">
+11. Modify the plot and observe the differences:
+
+- Add `fill = Sex` inside `aes()` and remove fill as `geom_histogram` parameter.
+- Set `scales = "free_y"` as parameter in `facet_wrap()`.
+- Change the bin width (e.g., 2 or 10).
+
+12. Is there is a gender difference in the amount of messages sent per day?
+</div>
+
+## Contingency tables
 
 Contingency tables show frequencies for particular combinations of values of two discrete random variables X and Y. In our dataset that could be gender and messagescategory.
 
@@ -241,7 +271,7 @@ questionnaire_data %>% count(Sex, MessagesCategory)
 7. Take a look at the output. What can we learn about gender and message category?
 </div>
 
-#### Measures of central tendency and dispersion
+## Measures of central tendency and dispersion
 
 Calculating measures of central tendency and dispersion using R is relatively easy.
 
@@ -257,18 +287,18 @@ min(questionnaire_data$Messages_per_day)
 max(questionnaire_data$Messages_per_day)
 ```
 
-## Keyboard data
-Let's now input the keyboard data file. It's called 'keyboard_data_R_2024.csv' and can be imported using the command 'read.csv(file="keyboard_data_R_2024.csv")'. Be sure sure to assign the output to a new variable, which we'll call 'keyboard_data'.
+# Keyboard data
+Let's now input the keyboard data file. It's called '`r keyboard_file`' and can be imported using the command 'read.csv(file="`r keyboard_file`")'. Be sure sure to assign the output to a new variable, which we'll call 'keyboard_data'.
 <div class="question">
-8. Import keyboard_data_R_2024.csv to a variable named keyboard_data.
+8. Import `r keyboard_file` to a variable named keyboard_data.
 </div>
 The import of this csv file is similar to how we imported the previous excel file, so look back to that definition for an example.
 
 ```{r load-keyboard-data, echo=FALSE}
-keyboard_data <- read.csv(file="keyboard_data_R_2024.csv")
+keyboard_data <- read.csv(file=keyboard_file)
 ```
 
-#### Long format data
+## Long format data
 The questionnaire data is structured in a 'wide' format: each row represents a participant, and each observation is put in a column. Instead, the keyboard_data is in 'long' format. Here, each row represents a trial, which is one attempt to write the sentence 'the quick brown fox jumps over the lazy dog'. 
 
 <div class="question">
@@ -278,7 +308,7 @@ The questionnaire data is structured in a 'wide' format: each row represents a p
 - Which columns identify a row? ParticipantID is no longer unique, so which other columns are needed in addition to ParticipantID to know which trial we are looking at?
 </div>
 
-#### More on measures of central tendency and dispersion: The OPTI-keyboard
+## More on measures of central tendency and dispersion: The OPTI-keyboard
 
 
 You can use this code to calculate the measures of central tendency and dispersion for the OPTI-keyboard. Let's first filter our data to only include trials with the OPTI-keyboard:
@@ -315,7 +345,7 @@ Now that we calculated the measures of central tendency and dispersion for the O
 11. Can you repeat the steps and calculate the measures for the QWERT-keyboard?
 </div>
 
-#### Tests of normality: OPTI keyboard
+## Tests of normality: OPTI keyboard
 
 The best way to investigate kurtosis and skewness and normality is through Kolmogorov-Smirnov statistic and the Shapiro-Wilk Test.
 
@@ -333,7 +363,7 @@ ks.test(opti_data$WPM, "pnorm", mean = mean(opti_data$WPM), sd = sd(opti_data$WP
 shapiro.test(opti_data$WPM)
 ```
 
-#### Taking a look at outliers
+## Taking a look at outliers
 
 ```{r histogram-opti1, fig.cap="Histogram of OPTI", fig.width=5, fig.height=4, out.width="50%", fig.align="center"}
 ggplot(data = opti_data, aes(x = WPM)) +
@@ -362,4 +392,3 @@ A way to check what is going on here is through data visualizations. I have note
 12. Can you repeat these steps for our QWERTY keyboard? Are our data for QWERT normaly distributed, and why (not) so?
 </div>
 
-<mark>Todo: Outlier removal (or not!)</mark>

@@ -1,6 +1,6 @@
 ---
 title: "Lab & Stats Weeks"
-author: "Frans van der Sluis, Mara Günther, Lorna Wildegaard (2019 version)"
+author: "Frans van der Sluis, Mara Günther, Lorna Wildegaard"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -9,24 +9,36 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, results = "hide")
+keyboard_file <- "keyboard_data_R_2024.csv"
 ```
 
-# LAB SESSION 2: INFERENTIAL STATISTICS (PART 1)
+# STATS SESSION 2: INFERENTIAL STATISTICS (PART 1)
+
+## Changelog
+- 2025 Version for R, including long-format data (*Frans van der Sluis*)
+- 2019 Original version for SPSS (*Lorna Wildegaard*)
 
 ## Topics
 
 - Paired-samples t-test
 - Independent samples t-test
 - Tidyverse/dplyr's group_by and group-wise summaries
-- Assumptions of t-tests
+- One-way and repeated-measures ANOVA
 
-<mark>Todo: Add resources</mark>
+<!--
+<mark>
+TODOs:
+
+- Add resources
+
+</mark>
+-->
 
 # Introduction
 
 The goal of this lab session is to learn how to perform Student’s t-tests using R. In this session, we will analyze the data from our experiment on typing speed (words per minute, *WPM*) using two different keyboards: the Opti keyboard and the QWERTY keyboard. 
 <!--In addition to the typing speed data, the dataset includes demographic information such as gender, age, language, computer use (hours per day), and messages sent.-->
-The data are stored in long format in the file `keyboard_data_R_2024.csv`, which means that each row corresponds to one trial. Key variables include:
+The data are stored in long format in the file `r keyboard_file`, which means that each row corresponds to one trial. Key variables include:
 
 - **ParticipantID** (unique identifier)
 - **Keyboard** (with values "OPTI" or "QWERTY")
@@ -56,10 +68,10 @@ We start with our first research question (RQ1):
 
 ```{r, echo=FALSE}
 # Read in the long-format dataset
-keyboard_data <- read.csv("keyboard_data_R_2024.csv")
+keyboard_data <- read.csv(keyboard_file)
 library(dplyr)
 ```
-Let's first describe our data for either keyboard. 
+Let's first describe our data for either keyboard.
 We can summarize (aggregate) our data per keyboard using the 'group_by' function.
 It calculates the mean and standard deviation (both its parametric and non-parametric alternatives) for each group (Keyboard):
 ```{r}
@@ -176,14 +188,13 @@ question, we need to temporarily de-select all older participants in our data se
 
 The first task is to recode your Age variable into two groups that fit your data and create an
 Age_group variable, dividing the respondents into a “younger” and “older” group:
+
 <!--. First, make a
-frequency analysis and decide how you want to divide your respondents into two somewhat equally
-sized groups. 
-Lab1, heading: "Frequency distribution table" shows you how to use count to get the frequencies of values in the sample.
-Lab1, heading "Re-coding variables", shows you how to re-code a continuous variable into a categorical one.
+Stats1, heading: "Frequency distribution table" shows you how to use count to get the frequencies of values in the sample.
+Stats1, heading "Re-coding variables", shows you how to re-code a continuous variable into a categorical one.
 -->
 
-1. Check the frequency distribution of your Age variable (see Lab1, "Frequency distribution table") to understand its distribution.
+1. Check the frequency distribution of your Age variable (see Stats1, "Frequency distribution table") to understand its distribution.
 ```{r, echo=FALSE}
 age_freq <- keyboard_data %>% 
   count(Age) %>% 
@@ -204,7 +215,7 @@ age_median <- median(keyboard_data$Age, na.rm = TRUE)
 age_median
 ```
 
-4. Using the method shown in Lab1 ("Re-coding variables"), create a new variable (Age_group) that assigns participants to "younger" (if Age is less than or equal to the median) or "older" (if Age is above the median).
+4. Using the method shown in Stats1 ("Re-coding variables"), create a new variable (Age_group) that assigns participants to "younger" (if Age is less than or equal to the median) or "older" (if Age is above the median).
 ```{r,echo=FALSE}
 # Create the Age_group variable
 keyboard_data <- keyboard_data %>%
@@ -219,7 +230,7 @@ keyboard_data %>%
 4. What level of measurement (nominal, ordinal, interval, ratio) is the Age_group variable measured at?
 </div>
 
-Second, we need to filter our dataframe on a subgroup of younger students. In Lab1 we filtered twice: on a specific partipant (ID: 5193237) and on a specific keyboard (OPTI). Use the same filter command to now filter on younger students. 
+Second, we need to filter our dataframe on a subgroup of younger students. In Stats1 we filtered twice: on a specific partipant (ID: 5193237) and on a specific keyboard (OPTI). Use the same filter command to now filter on younger students.
 
 <div class="question">
 5. Is there a statistically significant difference in wpm when typing on the OPTI vs QWERTY
@@ -227,6 +238,12 @@ keyboard among our younger group of students (at &alpha; = 0.05)? Formulate the 
 hypotheses, perform the paired-samples t-test, and report the results APA-style.
 </div>
 
+```{r, echo=FALSE}
+# Small test to see how the results change when we shuffle the order of observations for each participant
+keyboard_data %>%
+        t_test(WPM ~ Age_group)
+# should be different
+```
 
 # 3. Independent-Samples t-Test
 
@@ -257,22 +274,23 @@ t_test(Mean_WPM ~ Sex, data = mean_wpm)
 ```
 
 <div class="question">
-<!--8. Report the results of this independent-samples t-test for RQ2 (with a = 0.05).-->
-6. Investigate RQ2. Formulate the null/alternative hypotheses, <mark>use the appropriate chart to
-visualize the differences between the female and male participants</mark>, perform the
+6. Investigate RQ2. Formulate the null/alternative hypotheses, use the appropriate chart to
+visualize the differences between the female and male participants, perform the
 independent-samples t-test, and report the results for RQ2 (with a = 0.05).
 </div>
+<!--8. Report the results of this independent-samples t-test for RQ2 (with a = 0.05).-->
 
-<mark>Todo: 'The appropriate chart': population pyramid / side-by-side histograms? Add to / check lab1.
+**Tip**: For an appropriate graph, consult "Population Pyramids (Alternative: Faceted Bar Chart in R)" from Stats1. Use the `mean_wpm` dataframe, take `Mean_WPM` as x-axis (in the aes definition), `~ Sex` for facet_wrap.
 
-```{r, echo=FALSE}
-p <- ggplot(keyboard_data, aes(x = WPM, fill = Sex)) +
-     geom_histogram(binwidth = 5, alpha = 0.7, position = "dodge") +
-     facet_grid(. ~ Sex) + coord_flip() +
-     labs(title = "WPM Distribution by Gender",
-          x = "WPM",
-          y = "Frequency") +
-     theme_minimal()
+```{r faceted-histogram, echo=FALSE, fig.width=8, fig.height=4, out.width="50%", fig.align="center"}
+p <- ggplot(mean_wpm, aes(x = Mean_WPM)) +
+  geom_histogram(binwidth = 5, color = "black", fill = "light green") +
+  facet_wrap(~ Sex, scales = "free_y") +
+  labs(title = "Average WPM by Gender",
+       x = "Average WPM",
+       y = "Count") +
+  theme_minimal()
+#p
 ```
 
 ## Levene's test
@@ -297,7 +315,7 @@ t_test(Mean_WPM ~ Sex, data = mean_wpm, var.equal = FALSE)
 
 We also still need to answer our third and last research question:
 
-**RQ3**: Is there a difference in typing speed between our two older and younger student
+**RQ3**: Is there a difference in typing speed between the older and younger student
 groups?
 
 <div class="question">
@@ -307,7 +325,94 @@ visualize the differences between the old and young participants, perform the ap
 t-tests, and report the results.
 </div>
 
-<mark>Todo: ANOVA for >2 groups</mark>
+# Beyond t-tests: When to use ANOVA
+
+So far, we have used t-tests to compare two groups (e.g., WPM between OPTI and QWERTY keyboards). However, when we have more than two categories, a t-test is no longer suitable. Instead, we use **Analysis of Variance (ANOVA)**:
+
+- A **t-test** compares the means between **two groups** (e.g., Keyboard: OPTI vs. QWERTY).
+- **ANOVA** compares means across **three or more groups** (e.g., MessagesCategory: "10 or less", "11 to 50", "More than 50").
+- ANOVA tests whether **at least one group mean is different** but does not tell us **which groups differ**; for that, we need **post-hoc tests** (e.g., Tukey's HSD).
+
+
+## Case 1: Repeating a t-test as an ANOVA
+
+Previously, we used a t-test to compare WPM between OPTI and QWERTY keyboards. Here, we perform a one-way ANOVA to achieve a similar result, using again our full data set (`keyboard_data`):
+
+```r
+anova_keyboard <- aov(WPM ~ Keyboard, data = keyboard_data)
+summary(anova_keyboard)
+```
+
+If the ANOVA is significant (p < 0.05), follow up a post-hoc test (e.g., Tukey’s HSD or Bonferroni) to find which Keyboard is faster:
+```r
+TukeyHSD(anova_keyboard)
+```
+
+**Question:**
+<div class="question">
+9. Compare the p-value of the ANOVA test to the t-test: Which one is more conservative?
+</div>
+
+## Case 2: Repeated measures ANOVA
+In Case 1, the one-way ANOVA was more conservative than the paired t-test because it treated Keyboard as a between-subjects variable, assuming that each WPM value came from different participants. However, our study is within-subjects: each participant types on both keyboards across multiple trials.
+
+To correctly account for this, we use a repeated-measures ANOVA, which separates between-participant variance from within-participant variance, just like a paired t-test does.
+We will use rstatix again to interface with our long-format data:
+```{r rm-anova}
+library(rstatix)
+
+anova_rm <- keyboard_data %>%
+  anova_test(dv = WPM, wid = ParticipantID, within = c(Keyboard, Trial_order))
+
+anova_rm
+```
+This accounts for the within-subjects design by including ParticipantID as the `wid` parameter, and setting `Keyboard` and `Trial_order` as factors each participant was exposed to.
+The resulting ANOVA table provides three tests:
+
+- Keyboard Effect: Tests if WPM differs between OPTI and QWERTY keyboards.
+- Trial_order Effect: Tests if WPM changes across trials (learning effects).
+- Keyboard × TrialOrder Interaction: Tests if the effect of Keyboard depends on Trial_order (e.g., does one keyboard improve more with practice?).
+
+If the interaction is significant,
+it suggests that one keyboard may have benefited more from repeated trials than the other,
+indicating a more pronounced learning (or fatigue) effect for one of the keyboards.
+
+**Question:**
+<div class="question">
+10. Compare the p-value of the repeated-measures ANOVA test to the t-test: Which one is more conservative now? And which one is more detailed?
+</div>
+
+
+## Case 3: Comparing WPM Across Three Message Categories
+
+As indicated, an ANOVA can also be used to compare >2 categories. We can test this using our `MessagesCategory` variable (You created this variable in Stats1.) Re-run your recoding code if needed:
+```{r recode-messages, echo=TRUE}
+library(dplyr)
+keyboard_data <- keyboard_data %>%
+  mutate(MessagesCategory = case_when(
+    Messages_per_day <= 10 ~ "10 or less",
+    Messages_per_day >= 11 & Messages_per_day <= 50 ~ "11 to 50",
+    Messages_per_day > 50 ~ "More than 50"
+  ))
+```
+
+### **Question:**
+<div class="question">
+11. Run a one-way ANOVA to test whether WPM differs across `MessagesCategory`. If significant, conduct a post-hoc test (Tukey’s HSD) to determine which categories differ. Interpret the results: Is there a difference in typing speed based on how frequently people send messages?
+</div>
+
+```{r anova-messages-category, echo=FALSE}
+# Load necessary library
+library(rstatix)
+
+# Run one-way ANOVA
+anova_messages <- aov(WPM ~ MessagesCategory, data = keyboard_data)
+summary(anova_messages)
+
+# If significant, run post-hoc test (Tukey’s HSD)
+TukeyHSD(anova_messages)
+```
+
 
 ---
 
