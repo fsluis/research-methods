@@ -1,6 +1,6 @@
 # RESEARCH-METHODS
 
-Welcome to the repository for the R exercises used in the **Research Methods and Experimental Design** course, part of the **Cognition & Communication** master program at Copenhagen University.
+Welcome to the website with the R exercises used in the **Research Methods and Experimental Design** course, part of the **Cognition & Communication** master program at Copenhagen University.
 
 <p align="left">
   <a href="https://creativecommons.org/licenses/by-sa/4.0/">
@@ -15,10 +15,7 @@ Welcome to the repository for the R exercises used in the **Research Methods and
 
 ## Overview
 
-This site provides a collection of R-based exercises designed to give you hands-on experience with:
-- Descriptive statistics
-- Inferential statistics
-
+This site provides a collection of R-based exercises designed to give you hands-on experience with **descriptive statistics** and **inferential statistics**.
 The materials are intended to complement our course lectures and help you deepen your understanding of statistical methods and research design.
 
 ## Statistics Exercises
