@@ -1,4 +1,4 @@
-# Research Methods and Experimental Design
+# RESEARCH METHODS AND EXPERIMENTAL DESIGN
 
 Welcome to the website with the R exercises used in the **Research Methods and Experimental Design** course, part of the **Cognition & Communication** master program at Copenhagen University.
 
