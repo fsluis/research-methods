@@ -1,6 +1,6 @@
 ---
 title: "Lab & Stats Weeks"
-author: "Frans van der Sluis, Mara Günther, Lorna Wildgaard"
+author: "Frans van der Sluis and Mara Günther (2025 version)"
 date: "`r Sys.Date()`"
 output: 
   html_document:
@@ -26,7 +26,7 @@ questionnaire_file <- "questionnaire_data_R_2024.xlsx" # replace this one manual
 
 ## Changelog
 - 2025 Version for R (*Mara Günther*, *Frans van der Sluis*)
-- 2019 Original version for SPSS (*Lorna Wildgaard*)
+- 2019 Original version for SPSS (*Lorna Wildgaard*, *Haakon Lund*, and *Toine Bogers*)
 
 ## Topics
 
