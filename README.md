@@ -30,9 +30,3 @@ The exercises are based on a keyboard typing experiment originally developed by 
 If you have any questions or feedback, please contact the course instructors.
 
 Enjoy exploring the exercises, and happy coding! 🚀  
-
----
-
-**Frans van der Sluis**  
-Copenhagen University  
-Cognition & Communication Master Program  

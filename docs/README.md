@@ -30,9 +30,3 @@ You can access the following lab exercises directly through your browser:
 
 Enjoy exploring the exercises and happy coding!
 
----
-
-**Frans van der Sluis**
-
-Copenhagen University  
-Cognition & Communication Master Program
