@@ -1,4 +1,4 @@
-year = '2024'
+year = '2025'
 # export in 'wide' format from Gorilla (only applies to questionnaire data)
 
 # Load necessary libraries
@@ -56,7 +56,7 @@ aggregated_df <- aggregated_df %>%
   ) 
 
 # Step 5. Read in the questionnaire data.
-quest_df <- read_csv("../gorilla_data_2024/data_exp_31463-v6_questionnaire-fopf.csv")
+quest_df <- read_csv(glue::glue("gorilla_data_{year}/data_exp_31463-v6_questionnaire-fopf.csv"))
 
 library(dplyr)
 

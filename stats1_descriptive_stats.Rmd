@@ -9,8 +9,8 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, results = "hide")
-keyboard_file <- "keyboard_data_R_2024.csv"
-questionnaire_file <- "questionnaire_data_R_2024.xlsx" # replace this one manually as well, cause it's in a code block
+keyboard_file <- "keyboard_data_R_2025.csv"
+questionnaire_file <- "questionnaire_data_R_2025.xlsx" # replace this one manually as well, cause it's in a code block
 ```
 
 # STATS SESSION 1: DESCRIPTIVE STATISTICS
@@ -86,7 +86,7 @@ library(tidyverse)
 library(moments)
 ```
 ```{r load-data}
-questionnaire_data <- read_excel("questionnaire_data_R_2024.xlsx")
+questionnaire_data <- read_excel("questionnaire_data_R_2025.xlsx")
 glimpse(questionnaire_data)
 ```
 
