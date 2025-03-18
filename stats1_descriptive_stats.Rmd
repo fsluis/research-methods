@@ -9,6 +9,11 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, results = "hide")
+local({
+    r <- getOption("repos")
+    r["CRAN"] <- "http://cran.dk.r-project.org"
+    options(repos = r)
+})
 keyboard_file <- "keyboard_data_R_2025.csv"
 questionnaire_file <- "questionnaire_data_R_2025.xlsx" # replace this one manually as well, cause it's in a code block
 ```
@@ -66,7 +71,7 @@ Install and load the necessary libraries for this session. You can read more abo
 - Here is an example for readxl, a library needed to read Excel files:
 
 ```{r load-readxl}
-install.packages("readxl", repo="http://cran.dk.r-project.org")
+install.packages("readxl")
 library(readxl)
 ```
 
