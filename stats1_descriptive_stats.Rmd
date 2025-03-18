@@ -9,7 +9,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, results = "hide")
-local({
+local({ # from https://stackoverflow.com/questions/76019252/for-r-install-packages-can-a-default-cran-mirror-or-repo-be-specified-with-an-e
     r <- getOption("repos")
     r["CRAN"] <- "http://cran.dk.r-project.org"
     options(repos = r)
