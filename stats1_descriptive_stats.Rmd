@@ -278,7 +278,7 @@ Let's expand our plot definition a bit further:
 - Set `scales = "free_y"` as second parameter in `facet_wrap()`, after the formula (`~ Sex`).
 - Change the bin width (e.g., 2 or 10).
 
-12. Next, examine whether there is 1) a gender difference in the amount of messages sent per day, and 2) a gender difference in the amount of hours used on this in our data. Generate the population pyramids (well, faceted bar charts) for these to comparisons. Play around with the binwidth (and other parameters) of the graphs. Is there visual evidence for a gender gap?
+12. Next, examine whether there is 1) a gender difference in the amount of messages sent per day, and 2) a gender difference in the amount of hours used on this in our data. Generate the population pyramids (well, faceted bar charts) for these to comparisons. Change the `Age` variable in the `x = Age` parameter of `aes` for your variable of interest. Play around with the binwidth (and other parameters) of the graphs. Is there visual evidence for a gender gap?
 </div>
 
 ```{r gender-histograms, echo=FALSE}
