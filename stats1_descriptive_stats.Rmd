@@ -53,6 +53,7 @@ questionnaire_file <- "questionnaire_data_R_2025.xlsx" # replace this one manual
 <mark>Todo: Review & add more exercises</mark>
 <mark>Histogram with density line</mark>
 <mark>Todo: Outlier removal (or not!)</mark>
+Todo: Add icons for uploading file and for opening new RScript + run / source buttons in RStudio
 -->
 
 # Getting started
@@ -271,7 +272,7 @@ ggplot(data = questionnaire_data, aes(x = Age))+
 
 Let's expand our plot definition a bit further:
 <div class="question">
-11. Modify the plot and observe the differences:
+11. Modify the plot and observe the differences. Try one-by-one:
 
 - Add `fill = Sex` as second parameter inside `aes()` and remove `fill` as `geom_histogram` parameter.
 - Set `scales = "free_y"` as second parameter in `facet_wrap()`, after the formula (`~ Sex`).
@@ -281,14 +282,14 @@ Let's expand our plot definition a bit further:
 </div>
 
 ```{r gender-histograms, echo=FALSE}
-ggplot(data = questionnaire_data, aes(x = Messages_per_day))+
+p <- ggplot(data = questionnaire_data, aes(x = Messages_per_day))+
   facet_wrap(~ Sex) +
   geom_histogram(binwidth = 60, color = "black", fill = "light green") +
   ggtitle("Faceted Messages_per_day Distribution")
 ```
 
 ```{r gender-histograms-hours, echo=FALSE}
-ggplot(data = questionnaire_data, aes(x = Hours_of_computer_use_per_day))+
+p <- ggplot(data = questionnaire_data, aes(x = Hours_of_computer_use_per_day))+
   facet_wrap(~ Sex) +
   geom_histogram(binwidth = 5, color = "black", fill = "light green") +
   ggtitle("Faceted Hours_of_computer_use_per_day Distribution")
@@ -315,13 +316,13 @@ Calculating measures of central tendency and dispersion using R is relatively ea
 With the following code, you can for example calculate the mean, median, mode, standard deviation, minimum and maximum values for messages per day:
 
 ```{r central-tendency}
-mean(questionnaire_data$Messages_per_day)
-median(questionnaire_data$Messages_per_day)
+mean(questionnaire_data$Messages_per_day, na.rm=TRUE)
+median(questionnaire_data$Messages_per_day, na.rm=TRUE)
 as.numeric(names(sort(table(questionnaire_data$Messages_per_day), decreasing = TRUE)[1])) 
 
-sd(questionnaire_data$Messages_per_day)
-min(questionnaire_data$Messages_per_day)
-max(questionnaire_data$Messages_per_day)
+sd(questionnaire_data$Messages_per_day, na.rm=TRUE)
+min(questionnaire_data$Messages_per_day, na.rm=TRUE)
+max(questionnaire_data$Messages_per_day, na.rm=TRUE)
 ```
 
 # Keyboard data
