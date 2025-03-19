@@ -14,8 +14,8 @@ local({ # from https://stackoverflow.com/questions/76019252/for-r-install-packag
     r["CRAN"] <- "http://cran.dk.r-project.org"
     options(repos = r)
 })
-keyboard_file <- "../keyboard_data_R_2025.csv"
-questionnaire_file <- "../questionnaire_data_R_2025.xlsx" # replace this one manually as well, cause it's in a code block
+keyboard_file <- "keyboard_data_R_2025.csv"
+questionnaire_file <- "questionnaire_data_R_2025.xlsx" # replace this one manually as well, cause it's in a code block
 ```
 
 # STATS SESSION 1: DESCRIPTIVE STATISTICS
@@ -61,13 +61,18 @@ questionnaire_file <- "../questionnaire_data_R_2025.xlsx" # replace this one man
 
 1. Open and log in to [ERDA](https://erda.dk) with your KU mail
 2. Click on “jupyter”, then “Start DAG”
-3. Now, JupyterLab will launch. When it has launched, find and click on RStudio.
-4. Start a new project with a new working directory
-5. Start a new RScript and save it in the directory
+3. Now, JupyterLab will launch.
+4. When JupyterLab has launched, use the file browser on the right-hand side to upload our data files: `r questionnaire_file` and `r keyboard_file`. One of the icons there are to 'Upload files'.
+5. Now, in JupyterLab, find and click on RStudio.
+6. Start a new project with a new working directory
+7. Start a **new RScript** and save it in the directory
+
+Note: Remember to work in an RScript, not in the console!
 
 ## Getting ready in RStudio
 
-Install and load the necessary libraries for this session. You can read more about libraries [here](https://moderndive.com/v2/getting-started.html). 
+Install and load the necessary libraries for this session. You can read more about libraries [here](https://moderndive.com/v2/getting-started.html). The `install.packages` command installs a package, you only need to run this once (until you re-install or upgrade R). The `library` command needs to run everytime you start a new R session.
+
 - Here is an example for readxl, a library needed to read Excel files:
 
 ```{r load-readxl}
@@ -91,7 +96,7 @@ library(tidyverse)
 library(moments)
 ```
 ```{r load-data}
-questionnaire_data <- read_excel("../questionnaire_data_R_2025.xlsx")
+questionnaire_data <- read_excel("questionnaire_data_R_2025.xlsx")
 glimpse(questionnaire_data)
 ```
 
@@ -268,12 +273,26 @@ Let's expand our plot definition a bit further:
 <div class="question">
 11. Modify the plot and observe the differences:
 
-- Add `fill = Sex` inside `aes()` and remove fill as `geom_histogram` parameter.
-- Set `scales = "free_y"` as parameter in `facet_wrap()`.
+- Add `fill = Sex` as second parameter inside `aes()` and remove `fill` as `geom_histogram` parameter.
+- Set `scales = "free_y"` as second parameter in `facet_wrap()`, after the formula (`~ Sex`).
 - Change the bin width (e.g., 2 or 10).
 
-12. Is there is a gender difference in the amount of messages sent per day?
+12. Next, examine whether there is 1) a gender difference in the amount of messages sent per day, and 2) a gender difference in the amount of hours used on this in our data. Generate the population pyramids (well, faceted bar charts) for these to comparisons. Play around with the binwidth (and other parameters) of the graphs. Is there visual evidence for a gender gap?
 </div>
+
+```{r gender-histograms, echo=FALSE}
+ggplot(data = questionnaire_data, aes(x = Messages_per_day))+
+  facet_wrap(~ Sex) +
+  geom_histogram(binwidth = 60, color = "black", fill = "light green") +
+  ggtitle("Faceted Messages_per_day Distribution")
+```
+
+```{r gender-histograms-hours, echo=FALSE}
+ggplot(data = questionnaire_data, aes(x = Hours_of_computer_use_per_day))+
+  facet_wrap(~ Sex) +
+  geom_histogram(binwidth = 5, color = "black", fill = "light green") +
+  ggtitle("Faceted Hours_of_computer_use_per_day Distribution")
+```
 
 ## Contingency tables
 
@@ -286,7 +305,7 @@ questionnaire_data %>% count(Sex, MessagesCategory)
 ```
 
 <div class="question">
-7. Take a look at the output. What can we learn about gender and message category?
+13. Take a look at the output. What can we learn about gender and message category?
 </div>
 
 ## Measures of central tendency and dispersion
@@ -403,10 +422,10 @@ ggplot(opti_data, aes(y = WPM)) +
 A way to check what is going on here is through data visualizations. I have noted down the code for a histogram, Q-Q plot and boxplot.
 
 <div class="question">
-11. Take a look at these three visualisations: Can you see why the data in OPTI is not normally distributed?
+14. Take a look at these three visualisations: Can you see why the data in OPTI is not normally distributed?
 </div>
 
 <div class="question">
-12. Can you repeat these steps for our QWERTY keyboard? Are our data for QWERT normaly distributed, and why (not) so?
+15. Can you repeat these steps for our QWERTY keyboard? Are our data for QWERT normaly distributed, and why (not) so?
 </div>
 
