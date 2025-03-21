@@ -9,7 +9,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, results = "hide")
-keyboard_file <- "../keyboard_data_R_2025.csv"
+keyboard_file <- "keyboard_data_R_2025.csv"
 ```
 
 # STATS SESSION 2: INFERENTIAL STATISTICS (PART 1)
@@ -39,7 +39,8 @@ keyboard_file <- "../keyboard_data_R_2025.csv"
 <!--
 <mark>
 TODOs:
-
+- Drop statixr / doesn't work on erda
+- Test with 2025 data: still sign.? favoring QWERT or OPTI?
 - Add resources
 
 </mark>
@@ -99,11 +100,14 @@ Take a look at the output;
 2. Do you think we will be able to confirm Ha?
 </div>
 
-Since every participant completes trials on both keyboards, we have repeated measures for each participant. This means each participant contributes paired observations (one for the OPTI condition and one for the QWERTY condition). In **rstatix**, we can perform a paired t-test on long-format data using the pipe notation:
+Since every participant completes trials on both keyboards, we have repeated measures for each participant. This means each participant contributes paired observations (one for the OPTI condition and one for the QWERTY condition). 
 
+To perform a paired t-test, we first rearrange the data to ensure that each row represents a matched pair of trials for the same participant and trial order. Then, we pivot the data into a wide format, so that each participant’s WPM on OPTI and QWERTY appear in separate columns:
 
+<!-- In **rstatix**, we can perform a paired t-test on long-format data using the pipe notation: -->
 
-```{r}
+```{r, echo=FALSE}
+# rstatix is not installable on ERDA!
 library(rstatix)
 library(dplyr)
 
@@ -112,8 +116,20 @@ keyboard_data %>%
   t_test(WPM ~ Keyboard, paired = TRUE)
 ```
 
-Explanation of the Formula Notation and Pairing:
+```{r}
+library(tidyverse)
+wpm_trial <- keyboard_data %>%
+  select(ParticipantID, Trial_order, Keyboard, WPM) %>%
+  arrange(ParticipantID, Trial_order, Keyboard) %>% # Sort data so pairs match correctly
+  pivot_wider(names_from = Keyboard, values_from = WPM) # Pivot to wide format to match trial pairs
 
+t.test(wpm_trial$OPTI, wpm_trial$QWERTY, paired = TRUE)
+```
+
+The reshaped data frame has two data columns, OPTI and QWERTY (both WPM measures). Open it in RStudio to inspect. The `t.test()` function compares these columns, and `paired = TRUE` tells R that each pair of values (OPTI & QWERTY) belongs to the same participant-trial combination, so differences within pairs are analyzed rather than differences between
+
+<!--
+Explanation of the Formula Notation and Pairing:
 - **Sorting (`arrange(ParticipantID,Trial_order)`)**
 RStatix assumes that the first observation in one condition (e.g. OPTI) corresponds to the first observation in the other condition (e.g. QWERTY), the second to the second, and so on. To make sure this is the case for our data, we first order the data by ParticipantID-Trial_order.
 
@@ -122,6 +138,7 @@ RStatix assumes that the first observation in one condition (e.g. OPTI) correspo
 
 - **Paired Argument (`paired = TRUE`)**:
   By setting `paired = TRUE`, we tell `t_test()` that the observations are not independent. Instead, each observation in one condition (e.g., OPTI) should be paired with an observation in the other condition (e.g., QWERTY) from the same ParticipantID / Trial_order.
+-->
 
 A note on sample normality and t-tests:
 The t-test doesn't assume that the individual data points (our sample) are normally distributed. It assumes that the means of samples taken from the population are normally distributed. This is known as the sampling distribution of the mean. Even though our sample shows positive skew, if our sample size is large enough (usually 20–30 or more), the central limit theorem tells us that the distribution of the sample means will be approximately normal. Thus, the t-test remains valid despite our sample data's skewness.
@@ -144,6 +161,25 @@ indicate Opti’s sample mean was greater or smaller than Qwerty? Therefore, it 
 indicate the direction of the mean-difference (even if nonsignificant) in some other way, such as by
 mentioning the sample means in the text, or by showing the sample means graphically, as in a bar
 chart. 
+
+
+<div class="question">
+4. (OPTIONAL / BONUS) We have now ran a paired t-test using trial-level data. Now, let's perform a similar test by summarizing the data at the participant level. This involves using tidyverse/dplyr's group_by (parameters: `Participant, Keyboard`) and summarize methods (to extract the `mean` of WPM). For a tutorial on group_by, see [here](https://www.statology.org/group-summarize-data-r/)
+</div>
+
+```{r, echo=FALSE}
+library(dplyr)
+# Aggregate WPM per participant
+wpm_summary <- keyboard_data %>%
+  group_by(ParticipantID, Keyboard) %>%
+  summarize(mean_WPM = mean(WPM, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = Keyboard, values_from = mean_WPM)
+
+# Run paired t-test
+t_test_result <- t.test(wpm_summary$OPTI, wpm_summary$QWERTY, paired = TRUE)
+print(t_test_result)
+```
+
 
 ```{r, echo=FALSE}
 # Some tests for different methods to structure data / t-tests
@@ -272,7 +308,7 @@ To compare participants, we first need to aggregate our data at the participant 
 ```{r mean-wpm, echo=TRUE}
 mean_wpm <- keyboard_data %>%
   group_by(ParticipantID,Sex) %>%
-  summarize(Mean_WPM = mean(WPM, na.rm = TRUE), .groups = "drop") 
+  summarize(Mean_WPM = mean(WPM, na.rm = TRUE), .groups = "drop")
 head(mean_wpm)
 ```
 <!-- # .groups parameter does the same as calling ungroup() afterwards -->
@@ -368,8 +404,9 @@ TukeyHSD(anova_keyboard)
 In Case 1, the one-way ANOVA was more conservative than the paired t-test because it treated Keyboard as a between-subjects variable, assuming that each WPM value came from different participants. However, our study is within-subjects: each participant types on both keyboards across multiple trials.
 
 To correctly account for this, we use a repeated-measures ANOVA, which separates between-participant variance from within-participant variance, just like a paired t-test does.
+<!--
 We will use rstatix again to interface with our long-format data:
-```{r rm-anova}
+```{r rm-anova-rstatix}
 library(rstatix)
 
 anova_rm <- keyboard_data %>%
@@ -378,6 +415,28 @@ anova_rm <- keyboard_data %>%
 anova_rm
 ```
 This accounts for the within-subjects design by including ParticipantID as the `wid` parameter, and setting `Keyboard` and `Trial_order` as factors each participant was exposed to.
+-->
+```{r rm-anova}
+# Convert values to factors (categoricals)
+keyboard_data <- keyboard_data %>%
+  mutate(
+    ParticipantID = factor(ParticipantID),
+    Keyboard = factor(Keyboard),
+    Trial_order = as.numeric(Trial_order)
+  )
+
+# Fit the repeated-measures ANOVA model
+anova_model <- aov(WPM ~ Keyboard * Trial_order + Error(ParticipantID/(Keyboard*Trial_order)), data = keyboard_data)
+summary(anova_model)
+```
+Explanation of the Formula Notation:
+
+- Part 1: `WPM ~ Keyboard * Trial_order`.
+This follows standard formula notation in R: `WPM` is the dependent variable, `Keyboard * Trial_order` specifies that we want to test for main effects of `Keyboard` and `Trial_order`, as well as their interaction (`Keyboard:Trial_order`). 
+- Part 2 `Error(ParticipantID/(Keyboard * Trial_order))` specifies `ParticipantID` as subject identifier, and repeated measures across the combinations of `Keyboard` and `Trial_order`. It tells R how to account for within-subject variability (i.e., repeated measures).
+
+Note: The conversion to factors is important here! If Trial_order is considered an interval (continuous) scale, anova evaluates whether WPM changes *linearly* across trials. It assumes that the effect follows a consistent upward/downward trend. As factor, anova tests for WPM differences at each trial. This also captures non-linear patterns (e.g., rapid learning, then plateau).
+
 The resulting ANOVA table provides three tests:
 
 - Keyboard Effect: Tests if WPM differs between OPTI and QWERTY keyboards.
@@ -391,6 +450,7 @@ indicating a more pronounced learning (or fatigue) effect for one of the keyboar
 **Question:**
 <div class="question">
 10. Compare the p-value of the repeated-measures ANOVA test to the t-test: Which one is more conservative now? And which one is more detailed?
+11. Interpret / try to understand the results in your own words. What do all these main and interactions effects mean?
 </div>
 
 
@@ -409,7 +469,7 @@ keyboard_data <- keyboard_data %>%
 
 ### **Question:**
 <div class="question">
-11. Run a one-way ANOVA to test whether WPM differs across `MessagesCategory`. If significant, conduct a post-hoc test (Tukey’s HSD) to determine which categories differ. Interpret the results: Is there a difference in typing speed based on how frequently people send messages?
+12. Run a one-way ANOVA to test whether WPM differs across `MessagesCategory`. If significant, conduct a post-hoc test (Tukey’s HSD) to determine which categories differ. Interpret the results: Is there a difference in typing speed based on how frequently people send messages?
 </div>
 
 ```{r anova-messages-category, echo=FALSE}

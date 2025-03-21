@@ -11,7 +11,7 @@
 
 <meta name="author" content="Frans van der Sluis (2025 version)" />
 
-<meta name="date" content="2025-03-14" />
+<meta name="date" content="2025-03-21" />
 
 <title>Lab &amp; Stats Weeks</title>
 
@@ -392,7 +392,7 @@ display: none;
 
 <h1 class="title toc-ignore">Lab &amp; Stats Weeks</h1>
 <h4 class="author">Frans van der Sluis (2025 version)</h4>
-<h4 class="date">2025-03-14</h4>
+<h4 class="date">2025-03-21</h4>
 
 </div>
 
@@ -425,7 +425,8 @@ Lund</em>, and <em>Toine Bogers</em>)</li>
 <!--
 <mark>
 TODOs:
-
+- Drop statixr / doesn't work on erda
+- Test with 2025 data: still sign.? favoring QWERT or OPTI?
 - Add resources
 
 </mark>
@@ -498,34 +499,37 @@ Take a look at the output;
 <p>Since every participant completes trials on both keyboards, we have
 repeated measures for each participant. This means each participant
 contributes paired observations (one for the OPTI condition and one for
-the QWERTY condition). In <strong>rstatix</strong>, we can perform a
-paired t-test on long-format data using the pipe notation:</p>
-<pre class="r"><code>library(rstatix)
-library(dplyr)
+the QWERTY condition).</p>
+<p>To perform a paired t-test, we first rearrange the data to ensure
+that each row represents a matched pair of trials for the same
+participant and trial order. Then, we pivot the data into a wide format,
+so that each participant’s WPM on OPTI and QWERTY appear in separate
+columns:</p>
+<!-- In **rstatix**, we can perform a paired t-test on long-format data using the pipe notation: -->
+<pre class="r"><code>library(tidyverse)
+wpm_trial &lt;- keyboard_data %&gt;%
+  select(ParticipantID, Trial_order, Keyboard, WPM) %&gt;%
+  arrange(ParticipantID, Trial_order, Keyboard) %&gt;% # Sort data so pairs match correctly
+  pivot_wider(names_from = Keyboard, values_from = WPM) # Pivot to wide format to match trial pairs
 
-keyboard_data %&gt;%
-  arrange(ParticipantID,Trial_order) %&gt;%
-  t_test(WPM ~ Keyboard, paired = TRUE)</code></pre>
-<p>Explanation of the Formula Notation and Pairing:</p>
-<ul>
-<li><p><strong>Sorting
-(<code>arrange(ParticipantID,Trial_order)</code>)</strong> RStatix
-assumes that the first observation in one condition (e.g. OPTI)
-corresponds to the first observation in the other condition
-(e.g. QWERTY), the second to the second, and so on. To make sure this is
-the case for our data, we first order the data by
-ParticipantID-Trial_order.</p></li>
-<li><p><strong>Formula (<code>WPM ~ Keyboard</code>)</strong>: This
-follows the standard R formula syntax. It specifies that we want to
-compare the WPM values (the dependent variable) across the levels of
-Keyboard (the independent variable): “OPTI” and “QWERTY”.</p></li>
-<li><p><strong>Paired Argument (<code>paired = TRUE</code>)</strong>: By
-setting <code>paired = TRUE</code>, we tell <code>t_test()</code> that
-the observations are not independent. Instead, each observation in one
-condition (e.g., OPTI) should be paired with an observation in the other
-condition (e.g., QWERTY) from the same ParticipantID /
-Trial_order.</p></li>
-</ul>
+t.test(wpm_trial$OPTI, wpm_trial$QWERTY, paired = TRUE)</code></pre>
+<p>The reshaped data frame has two data columns, OPTI and QWERTY (both
+WPM measures). Open it in RStudio to inspect. The <code>t.test()</code>
+function compares these columns, and <code>paired = TRUE</code> tells R
+that each pair of values (OPTI &amp; QWERTY) belongs to the same
+participant-trial combination, so differences within pairs are analyzed
+rather than differences between</p>
+<!--
+Explanation of the Formula Notation and Pairing:
+- **Sorting (`arrange(ParticipantID,Trial_order)`)**
+RStatix assumes that the first observation in one condition (e.g. OPTI) corresponds to the first observation in the other condition (e.g. QWERTY), the second to the second, and so on. To make sure this is the case for our data, we first order the data by ParticipantID-Trial_order.
+
+- **Formula (`WPM ~ Keyboard`)**:
+  This follows the standard R formula syntax. It specifies that we want to compare the WPM values (the dependent variable) across the levels of Keyboard (the independent variable): "OPTI" and "QWERTY".
+
+- **Paired Argument (`paired = TRUE`)**:
+  By setting `paired = TRUE`, we tell `t_test()` that the observations are not independent. Instead, each observation in one condition (e.g., OPTI) should be paired with an observation in the other condition (e.g., QWERTY) from the same ParticipantID / Trial_order.
+-->
 <p>A note on sample normality and t-tests: The t-test doesn’t assume
 that the individual data points (our sample) are normally distributed.
 It assumes that the means of samples taken from the population are
@@ -558,6 +562,16 @@ to indicate the direction of the mean-difference (even if
 nonsignificant) in some other way, such as by mentioning the sample
 means in the text, or by showing the sample means graphically, as in a
 bar chart.</p>
+<div class="question">
+<ol start="4" style="list-style-type: decimal">
+<li>(OPTIONAL / BONUS) We have now ran a paired t-test using trial-level
+data. Now, let’s perform a similar test by summarizing the data at the
+participant level. This involves using tidyverse/dplyr’s group_by
+(parameters: <code>Participant, Keyboard</code>) and summarize methods
+(to extract the <code>mean</code> of WPM). For a tutorial on group_by,
+see <a href="https://www.statology.org/group-summarize-data-r/">here</a></li>
+</ol>
+</div>
 </div>
 <div id="paired-samples-t-test-on-subgroups" class="section level1">
 <h1>2. Paired samples t-test on subgroups</h1>
@@ -624,7 +638,7 @@ independent-samples t-test.</p>
 participant level by calculating the mean WPM for each participant:</p>
 <pre class="r"><code>mean_wpm &lt;- keyboard_data %&gt;%
   group_by(ParticipantID,Sex) %&gt;%
-  summarize(Mean_WPM = mean(WPM, na.rm = TRUE), .groups = &quot;drop&quot;) 
+  summarize(Mean_WPM = mean(WPM, na.rm = TRUE), .groups = &quot;drop&quot;)
 head(mean_wpm)</code></pre>
 <!-- # .groups parameter does the same as calling ungroup() afterwards -->
 <p>Using this aggregated dataframe we can perform an independent-samples
@@ -724,19 +738,51 @@ our study is within-subjects: each participant types on both keyboards
 across multiple trials.</p>
 <p>To correctly account for this, we use a repeated-measures ANOVA,
 which separates between-participant variance from within-participant
-variance, just like a paired t-test does. We will use rstatix again to
-interface with our long-format data:</p>
-<pre class="r"><code>library(rstatix)
+variance, just like a paired t-test does. <!--
+We will use rstatix again to interface with our long-format data:
 
-anova_rm &lt;- keyboard_data %&gt;%
+``` r
+library(rstatix)
+
+anova_rm <- keyboard_data %>%
   anova_test(dv = WPM, wid = ParticipantID, within = c(Keyboard, Trial_order))
 
-anova_rm</code></pre>
-<p>This accounts for the within-subjects design by including
-ParticipantID as the <code>wid</code> parameter, and setting
-<code>Keyboard</code> and <code>Trial_order</code> as factors each
-participant was exposed to. The resulting ANOVA table provides three
-tests:</p>
+anova_rm
+```
+This accounts for the within-subjects design by including ParticipantID as the `wid` parameter, and setting `Keyboard` and `Trial_order` as factors each participant was exposed to.
+--></p>
+<pre class="r"><code># Convert values to factors (categoricals)
+keyboard_data &lt;- keyboard_data %&gt;%
+  mutate(
+    ParticipantID = factor(ParticipantID),
+    Keyboard = factor(Keyboard),
+    Trial_order = as.numeric(Trial_order)
+  )
+
+# Fit the repeated-measures ANOVA model
+anova_model &lt;- aov(WPM ~ Keyboard * Trial_order + Error(ParticipantID/(Keyboard*Trial_order)), data = keyboard_data)
+summary(anova_model)</code></pre>
+<p>Explanation of the Formula Notation:</p>
+<ul>
+<li>Part 1: <code>WPM ~ Keyboard * Trial_order</code>. This follows
+standard formula notation in R: <code>WPM</code> is the dependent
+variable, <code>Keyboard * Trial_order</code> specifies that we want to
+test for main effects of <code>Keyboard</code> and
+<code>Trial_order</code>, as well as their interaction
+(<code>Keyboard:Trial_order</code>).</li>
+<li>Part 2 <code>Error(ParticipantID/(Keyboard * Trial_order))</code>
+specifies <code>ParticipantID</code> as subject identifier, and repeated
+measures across the combinations of <code>Keyboard</code> and
+<code>Trial_order</code>. It tells R how to account for within-subject
+variability (i.e., repeated measures).</li>
+</ul>
+<p>Note: The conversion to factors is important here! If Trial_order is
+considered an interval (continuous) scale, anova evaluates whether WPM
+changes <em>linearly</em> across trials. It assumes that the effect
+follows a consistent upward/downward trend. As factor, anova tests for
+WPM differences at each trial. This also captures non-linear patterns
+(e.g., rapid learning, then plateau).</p>
+<p>The resulting ANOVA table provides three tests:</p>
 <ul>
 <li>Keyboard Effect: Tests if WPM differs between OPTI and QWERTY
 keyboards.</li>
@@ -756,6 +802,8 @@ keyboards.</p>
 <li>Compare the p-value of the repeated-measures ANOVA test to the
 t-test: Which one is more conservative now? And which one is more
 detailed?</li>
+<li>Interpret / try to understand the results in your own words. What do
+all these main and interactions effects mean?</li>
 </ol>
 </div>
 </div>
@@ -775,7 +823,7 @@ keyboard_data &lt;- keyboard_data %&gt;%
 <div id="question" class="section level3">
 <h3><strong>Question:</strong></h3>
 <div class="question">
-<ol start="11" style="list-style-type: decimal">
+<ol start="12" style="list-style-type: decimal">
 <li>Run a one-way ANOVA to test whether WPM differs across
 <code>MessagesCategory</code>. If significant, conduct a post-hoc test
 (Tukey’s HSD) to determine which categories differ. Interpret the
