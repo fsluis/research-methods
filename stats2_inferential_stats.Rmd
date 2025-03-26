@@ -39,8 +39,8 @@ keyboard_file <- "keyboard_data_R_2025.csv"
 <!--
 <mark>
 TODOs:
-- Drop statixr / doesn't work on erda
-- Test with 2025 data: still sign.? favoring QWERT or OPTI?
+V Drop statixr / doesn't work on erda
+V Test with 2025 data: still sign.? favoring QWERT or OPTI?
 - Add resources
 
 </mark>
@@ -153,7 +153,7 @@ When reporting your t-test in APA style, include:
 - The t-value with its degrees of freedom, the p-value, and optionally an effect size.
 
 For example:
-"*A paired-samples t-test indicated that WPM scores were significantly higher in the OPTI condition (M = 80.1, SD = 12.3) than in the QWERTY condition (M = 75.4, SD = 10.8), t(29) = 2.35, p = .026, d = 0.45.*"
+"*A paired-samples t-test indicated that WPM scores were significantly higher in the OPTI condition (M = 80.1, SD = 12.3) than in the QWERTY condition (M = 75.4, SD = 10.8), t(29) = 2.35, p = .026.*"
 
 Tip: Negative t-values: The sign of a t-value tells us the direction of the difference in sample
 means, which can be difficult to interpret without further explanation: Does a negative t-value
@@ -313,11 +313,11 @@ head(mean_wpm)
 ```
 <!-- # .groups parameter does the same as calling ungroup() afterwards -->
 
-Using this aggregated dataframe we can perform an independent-samples t-test. You can use the same function call as before (t_test), though without the 'paired=TRUE' parameter. You will also need to change the formula: Instead of predicting WMP by Keyboard, we will now compare mean_WPM by Sex.
+Using this aggregated dataframe we can perform an independent-samples t-test. You can use the same function call as before (t_test), though without the 'paired=TRUE' parameter. You will also need to change the formula: Instead of predicting WMP by Keyboard, we will now compare mean_WPM by Sex.QEE
 
 ```{r independent-t-test-gender, echo=FALSE}
-t_test(Mean_WPM ~ Sex, data = mean_wpm)
-#t.test(mean_WPM ~ Sex, data = mean_wpm) # base R also works here
+#t_test(Mean_WPM ~ Sex, data = mean_wpm)
+t.test(Mean_WPM ~ Sex, data = mean_wpm) # base R also works here
 ```
 
 <div class="question">
