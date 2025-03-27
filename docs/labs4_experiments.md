@@ -32,11 +32,14 @@ Data collection methods depend on the nature of the experiment. Behavioral measu
 
 For deeper insights into physiological responses, researchers may also employ biometric data collection methods, such as eye-tracking, EEG, or skin conductance analysis, which capture real-time cognitive and emotional engagement.
 
-Tip: Set a time limit for participants to complete your experiment. In this way, you won't loose tokens to unfinished participants. 
+Even though Gorilla.sc supports online experiments, we recommend you run your experiment *offline*, in our lab facilities. Online experiments add a lot of noise to the data, as each participants will be in a different, uncontrolled environment with dito distractions. 
+Also, set a time limit for participants to complete your experiment, so they will be removed in case they quit before finishing the study.
 
 ## Data Analysis
 Data analysis in experimental research depends on the study design and type of data collected. For between-subjects designs, t-tests compare two groups, while ANOVA tests for differences across multiple conditions. Two-way ANOVA examines interactions between independent variables. For within-subjects designs, repeated measures ANOVA accounts for individual variability across conditions, improving statistical power (see Stats2).
 
+<!-- todo: export data from Gorilla -->
+ 
 Before running inferential tests, first explore the data using descriptive statistics (means, standard deviations) and visualizations (histograms, boxplots, scatterplots) to check for patterns, outliers, and normality. Correlation analysis helps identify relationships between variables and detect multicollinearity in regression models (see Stats1).
 
 Comprehensive models, including regression (Stats3) and ANOVA (Stats2), can examine multiple predictors together. 
@@ -72,7 +75,7 @@ Marcel's experiments revealed that:
 
 - Temporal Dynamics: The priming effect was sensitive to the SOA, with certain intervals showing more pronounced effects, shedding light on the timing of unconscious semantic processing.
 
-### Relevance to Experimental Studies
+### Relevance
 
 Marcel’s demonstrated that semantic activation can occur without conscious awareness. This challenges traditional theories of consciousness and cognition, showing that information can be processed at a deeper level than previously assumed. The masked priming paradigm introduced by Marcel has become a standard method for studying automatic processing, influencing research in language processing, subliminal perception, and attention. 
 
@@ -96,7 +99,7 @@ Participants were presented with news articles that varied in textual complexity
 - It confirmed the moderating effect of comprehensibility, showing the existence of a `sweet spot' for interest.
 - Computational models can be used to identify and optimize this balance between challenge and engagement in textual materials.
 
-### Relevance to Experimental Studies
+### Relevance
 This study demonstrates how stimulus creation, randomization, and hypothesis testing can be used to investigate cognitive engagement. It integrates a controlled experiment, within-subjects design, and self-report questionnaires into a Structural Equation Model (SEM) for comprehensive analysis.
 
 ### Reference:
