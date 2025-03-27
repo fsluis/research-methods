@@ -67,9 +67,7 @@ Avoid over-testing and report both p-values and effect sizes. Visualizations (e.
 - SAM Scale: The Self-Assessment Manikin. [https://csea.phhp.ufl.edu/media/SAM.pdf](https://csea.phhp.ufl.edu/media/SAM.pdf)
 - Bradley, M. M., & Lang, P. J. (1994). Measuring emotion: The Self-Assessment Manikin and the Semantic Differential. Journal of Behavior Therapy and Experimental Psychiatry, 25(1), 49–59. https://doi.org/10.1016/0005-7916(94)90063-9
 - Watson, D., Clark, L. A., & Tellegen, A. (1988). Development and validation of brief measures of positive and negative affect: The PANAS scales. Journal of Personality and Social Psychology, 54(6), 1063–1070. https://doi.org/10.1037/0022-3514.54.6.1063
-
-Here is a concise and structured Use Case based on the Hewig et al. (2005) study, tailored for student use in lab-based emotion recognition research:
-
+- Piferi, R. L., Kline, K. A., Younger, J., & Lawler, K. A. (2000). An alternative approach for achieving cardiovascular baseline: Viewing an aquatic video. International Journal of Psychophysiology, 37(2), 207–217. https://doi.org/10.1016/S0167-8760(00)00102-1
 
 ## Example Study 1: Film Clip Validation for Emotion Induction
 
@@ -90,8 +88,6 @@ The primary goal was to evaluate the ability of each film to induce its intended
 ### Relevance
 
 This study provides a validated set of film clips for emotion induction with clear self-report evidence of affective impact. It also shows how to setup an emotional evaluation of film clips, including self-report measures and physiological responses.
-
-Certainly! Here's another example study based on the work of Egon L. van den Broek, focusing on the development of a dataset for emotion analysis.
 
 ---
 
