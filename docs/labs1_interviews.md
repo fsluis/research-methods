@@ -91,7 +91,7 @@ Relevance:
 This study demonstrates how semi-structured interviews and inductive analysis can reveal social dynamics in research collaborations. The card sorting method provides a structured way to develop themes from qualitative data, making it a valuable approach for analyzing group discussions and professional interactions in lab settings.
 
 Reference:
-Fraumann, G., Lund, H., van der Sluis, F., & Hertzum, M. (2025). Collaboration in data-intensive research networks: Expectations of Ph.D. fellows [work in progress / not published yet].
+Fraumann, G., van der Sluis, F., Hertzum, M., & Lund, H. (2024). Collaboration in a Data Intensive Network of Ph.D-Fellows: Experiences from Train2Wind. In M. Günther, G. Giebel, & H. Lund (Eds.), Train2Wind: Training Fellows in enTrainment in Offshore Wind Power: A European Doctoral Network (pp. 10-17). Danmarks Tekniske Universitet (DTU). [https://doi.org/10.5281/zenodo.14044958]
 
 ## Other example studies
 Gwynne, A. E. (2024). ‘Up to you’: Self-help books, depression and the reconstruction of reading. Media, Culture & Society, 46(2), 324-342. https://doi.org/10.1177/01634437231198431
