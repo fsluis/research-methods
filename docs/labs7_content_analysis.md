@@ -94,7 +94,7 @@ Sentiment analysis uses lexicons such as `bing`, `AFINN`, or `nrc`, which label 
 ## Use Case: Analyzing Quality Discussions on Reddit
 
 ### Reference  
- Van der Sluis, F., Faure, J., & Homnual, S. P. (2024). An empirical exploration of the subjectivity problem of information qualities. Journal of the Association for Information Science and Technology, 75(7), 829–843. https://doi.org/10.1002/asi.24884
+ Van der Sluis, F., Faure, J., & Homnual, S. P. (2024). An empirical exploration of the subjectivity problem of information qualities. Journal of the Association for Information Science and Technology, 75(7), 829–843. [https://doi.org/10.1002/asi.24884]
 
 ### Method  
 The study sampled posts from 16 high-engagement Reddit threads across four domains: cooking, fashion, football, and politics. Posts were selected that made claims about information quality, resulting in a dataset of 676 explicit judgments.
@@ -121,7 +121,7 @@ A student project examined emotional appeals in online product descriptions by D
 ## Use Case: Predicting Stock Market Trends Using Twitter Mood Analysis
 
 ### Reference
-Bollen, J., Mao, H., & Zeng, X.-J. (2011). Twitter mood predicts the stock market. *Journal of Computational Science*, 2(1), 1–8. https://doi.org/10.1016/j.jocs.2010.12.007
+Bollen, J., Mao, H., & Zeng, X.-J. (2011). Twitter mood predicts the stock market. *Journal of Computational Science*, 2(1), 1–8. [https://doi.org/10.1016/j.jocs.2010.12.007]
 
 ### Method
 The study analyzed approximately 9.7 million tweets posted between August and December 2008 to assess collective public mood and its potential correlation with the Dow Jones Industrial Average (DJIA). The researchers employed two mood-tracking tools:
@@ -141,9 +141,9 @@ This use case illustrates the practical application of sentiment analysis in fin
 
 ## Additional Resources
 
-- Silge, J., & Robinson, D. (2017). *Text Mining with R*. Available: https://www.tidytextmining.com
-- TidyTuesday Datasets: https://github.com/rfordatascience/tidytuesday
-- AoIR Ethics Guidelines: https://aoir.org/reports/ethics3.pdf
-- Awesome Public Datasets: A curated list of high-quality open datasets across various domains. Available: https://github.com/awesomedata/awesome-public-datasets
-- Open Data DK: A portal providing access to Danish public datasets. Available: https://www.opendata.dk/
+- Silge, J., & Robinson, D. (2017). *Text Mining with R*. Available: [https://www.tidytextmining.com]
+- TidyTuesday Datasets: [https://github.com/rfordatascience/tidytuesday]
+- AoIR Ethics Guidelines: [https://aoir.org/reports/ethics3.pdf]
+- Awesome Public Datasets: A curated list of high-quality open datasets across various domains. Available: [https://github.com/awesomedata/awesome-public-datasets]
+- Open Data DK: A portal providing access to Danish public datasets. Available: [https://www.opendata.dk/]
 
