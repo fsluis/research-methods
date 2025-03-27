@@ -153,7 +153,7 @@ When reporting your t-test in APA style, include:
 - The t-value with its degrees of freedom, the p-value, and optionally an effect size.
 
 For example:
-"*A paired-samples t-test indicated that WPM scores were significantly higher in the OPTI condition (M = 80.1, SD = 12.3) than in the QWERTY condition (M = 75.4, SD = 10.8), t(29) = 2.35, p = .026.*"
+"*A paired-samples t-test indicated that WPM scores were significantly higher in the OPTI condition (M = 80.1, SD = 12.3) than in the QWERTY condition (M = 75.4, SD = 10.8), t(29) = 2.35, p = .026.*" (note: these are random data).
 
 Tip: Negative t-values: The sign of a t-value tells us the direction of the difference in sample
 means, which can be difficult to interpret without further explanation: Does a negative t-value
