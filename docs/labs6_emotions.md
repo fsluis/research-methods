@@ -16,7 +16,7 @@ In lab-based setups, researchers collect a combination of data: self-reported em
 ## Study Design
 A successful emotion recognition study begins with a clear research question and a corresponding theoretical framework. Students must decide whether they aim to investigate specific discrete emotions (e.g., fear vs. disgust) or work within a dimensional model of affect. This decision will influence the choice of stimuli, measurement tools, and analysis techniques.
 
-An important early design choice is whether participants will experience *passive* or *active* stimuli. Passive designs involve participants observing emotional content—such as videos, images, or music—without responding. Active designs involve participation, such as performing tasks or making decisions under emotionally charged conditions. Passive designs offer more control and are recommended for early-stage or student projects.
+An important early design choice is whether participants will experience *passive* or *active* stimuli. Passive designs involve participants observing emotional content, such as videos, images, or music, without responding. Active designs involve participation, such as performing tasks or making decisions under emotionally charged conditions. Passive designs offer more control and are recommended for early-stage or student projects.
 
 Design your study such that you measure participants' baseline in the beginning.
 Before presenting any emotional stimuli, researchers should record a period of neutral or resting data (e.g., two minutes of calm breathing) to establish each participant’s physiological baseline. This enables meaningful comparison of later responses. A commonly used baseline is an aquatic video (Piferi, 2000).
@@ -36,6 +36,8 @@ Facial expression analysis can be carried out using webcam recordings and softwa
 Physiological data offers complementary insights. EDA reflects general emotional arousal via skin conductance. ECG and heart rate data provide insight into sympathetic nervous system activity and stress responses.
 
 To synchronize these data streams with stimulus presentation, students should use either software triggers (e.g., from PsychoPy or E-Prime) or hardware triggers (e.g., light or sound markers visible in video and biosignal recordings). Always pilot the synchronization setup to ensure all data streams are aligned.
+
+For an overview of different signals and tips about their measurement, consult Van den Broek (2009).
 
 ## Data Analysis
 At KU DigiLabs, we use OpenSignals for data recording and export. OpenSignals exports time-stamped data files for each participant-session. The exported files contain sensor readings, for example, EDA (Electrodermal Activity) or BVP/ECG (Blood Volume Pulse/Electrocardiogram) values with timestamps. After recording, this data can be exported and imported into R for further analysis. In R, students can compute descriptive statistics, visualize time-series responses, or perform relational analyses (e.g., correlating peak EDA values with self-reported arousal).
@@ -60,11 +62,10 @@ Statistical analysis can include:
 Avoid over-testing and report both p-values and effect sizes. Visualizations (e.g., line graphs, bar plots, heatmaps) can make results more interpretable and should accompany any statistical output.
 
 ## Additional Resources
+- van den Broek, E., Janssen, J. H., Westerink, J. H. D. M., & Healey, J. A. (2009). Prerequisites for affective signal processing (ASP). In P. Encarnacao, & A. Veloso (Eds.), International conference on bio-inspired systems and signal processing, biosignals 2009 (pp. 426-433). INSTICC PRESS. 
 - OpenSignals: Plux’s software for biosignal acquisition and synchronization. [https://biosignalsplux.com/software](https://biosignalsplux.com/software)
-- OpenFace: Open-source toolkit for facial expression analysis. [https://github.com/TadasBaltrusaitis/OpenFace](https://github.com/TadasBaltrusaitis/OpenFace)
-- IAPS (International Affective Picture System): A standardized image database with valence/arousal ratings. [https://csea.phhp.ufl.edu/media/iapsmessage.html](https://csea.phhp.ufl.edu/media/iapsmessage.html)
+- OpenFace: Open-source toolkit for facial expression analysis. [https://github.com/TadasBaltrusaitis/OpenFace)
 - BioSPPy & pyEDA: Python libraries for biosignal preprocessing and feature extraction. [https://github.com/PIA-Group/BioSPPy](https://github.com/PIA-Group/BioSPPy)
-- SAM Scale: The Self-Assessment Manikin. [https://csea.phhp.ufl.edu/media/SAM.pdf](https://csea.phhp.ufl.edu/media/SAM.pdf)
 - Bradley, M. M., & Lang, P. J. (1994). Measuring emotion: The Self-Assessment Manikin and the Semantic Differential. Journal of Behavior Therapy and Experimental Psychiatry, 25(1), 49–59. https://doi.org/10.1016/0005-7916(94)90063-9
 - Watson, D., Clark, L. A., & Tellegen, A. (1988). Development and validation of brief measures of positive and negative affect: The PANAS scales. Journal of Personality and Social Psychology, 54(6), 1063–1070. https://doi.org/10.1037/0022-3514.54.6.1063
 - Piferi, R. L., Kline, K. A., Younger, J., & Lawler, K. A. (2000). An alternative approach for achieving cardiovascular baseline: Viewing an aquatic video. International Journal of Psychophysiology, 37(2), 207–217. https://doi.org/10.1016/S0167-8760(00)00102-1
