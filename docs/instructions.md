@@ -34,7 +34,7 @@ Test the method by collecting a small sample of data. You can use a real partici
 
 Analyze your collected data to the extent that it makes sense for your method. This could involve coding, categorization, visualization, interpretation, or software-based analysis. All methods are expected to use some form of statistics, the individual infosheets give suggestions as to what might be applicable.
 
-## Poster Presentation with Appendix
+## Poster Presentation
 
 At the end of Lab Weeks, your group will present your findings and reflections in the form of a poster. This is your chance to share what you’ve learned and teach your classmates about the method you explored.
 
@@ -51,11 +51,11 @@ Reflect critically on your process and the method as a whole: What worked well? 
 
 We will organize a poster walk where each group presents their method and discusses it with classmates. Be prepared to explain what you did and answer questions.
 
-Many details about your study method won't fit on your paper, but it is nonetheless a good practice to document clearly all the choices made and actions taken during the different phases. As an appendix / handout to your poster presentation, also prepare a short handout that documents all your steps. Consider the level of detail needed to make your study reproducible - so your peers could run it and achieve the same (or not?) results.
+It is good practice to clearly document all choices made and actions taken during the different phases. If your poster does not allow space for these details, consider providing a supplementary way to share them. This could be a short handout, an annotated diagram or screenshot, or even a link (e.g., QR code) to a shared Google Doc describing your workflow. The goal is to make your process transparent and replicable, so that another group could realistically reproduce what you did. As part of your reflection, consider whether such replication would likely lead to similar results, and what factors might influence this.
 
 ## Submission
 
-Your poster+appendix will be submitted to Absalon and shared with the class as a learning resource.
+Your poster will be submitted to Absalon and shared with the class as a learning resource.
 
 ---
 
