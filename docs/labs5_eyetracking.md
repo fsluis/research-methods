@@ -81,13 +81,14 @@ This study demonstrates that eye-tracking can uncover subtle indicators of both 
 
 
 ## Additional Resources
-- Just, M. A., & Carpenter, P. A. (1976). Eye fixations and cognitive processes. Cognitive Psychology, 8(4), 441–480. https://doi.org/10.1016/0010-0285(76)90015-3 
+- Google Tech Talks: Theory, Practice, and Standardization of Eye-tracking Technology [https://www.youtube.com/watch?v=wi19uS4JFJ4]
+- Just, M. A., & Carpenter, P. A. (1976). Eye fixations and cognitive processes. Cognitive Psychology, 8(4), 441–480. [https://doi.org/10.1016/0010-0285(76)90015-3] 
 - Holmqvist, K., Nyström, M., Andersson, R., Dewhurst, R., Jarodzka, H., & van de Weijer, J. (2011). Eye Tracking: A Comprehensive Guide to Methods and Measures. Oxford University Press.
 - MacKenzie, I. S. (2024). Human-Computer Interaction: An Empirical Research Perspective (2nd ed.). Morgan Kaufmann.
-- van der Wel, P., & van Steenbergen, H. (2018). Pupil dilation as an index of effort in cognitive control tasks: A review. Psychonomic Bulletin & Review, 25(6), 2005–2015. https://doi.org/10.3758/s13423-018-1432-y
-- Kasneci, E., Gao, H., Özdel, S., Maquiling, V., Thaqi, E., Lau, C., Rong, Y., Kasneci, G., & Bozkir, E. (2024). Introduction to eye tracking: A hands-on tutorial for students and practitioners. arXiv preprint. https://arxiv.org/abs/2404.15435
-- Lima, D. S., & Ventura, D. F. (2023). A review of experimental task design in psychophysical eye tracking research. Frontiers in Human Neuroscience, 17, 1112769. https://doi.org/10.3389/fnhum.2023.1112769​
-- Clifton, C., Staub, A., & Rayner, K. (2007). Eye movements in reading words and sentences. In R. P. G. van Gompel, M. H. Fischer, W. S. Murray, & R. L. Hill (Eds.), Eye movements: A window on mind and brain (pp. 341–372). Oxford: Elsevier. https://doi.org/10.1016/B978-008044980-7/50017-3
-- Glaholt, M. G., & Reingold, E. M. (2011). Eye movement monitoring as a process tracing methodology in decision making research. Journal of Neuroscience, Psychology, and Economics, 4(2), 125–146. https://doi.org/10.1037/a0020692
-- Tobii & EyeLink Software Documentation – Guides for setting up and analyzing eye-tracking experiments https://drive.google.com/file/d/1n3s-nl049pP28CUY9F3YnFO_ssdPwUAT/view?usp=sharing.
+- van der Wel, P., & van Steenbergen, H. (2018). Pupil dilation as an index of effort in cognitive control tasks: A review. Psychonomic Bulletin & Review, 25(6), 2005–2015. [https://doi.org/10.3758/s13423-018-1432-y]
+- Kasneci, E., Gao, H., Özdel, S., Maquiling, V., Thaqi, E., Lau, C., Rong, Y., Kasneci, G., & Bozkir, E. (2024). Introduction to eye tracking: A hands-on tutorial for students and practitioners. arXiv preprint. [https://arxiv.org/abs/2404.15435]
+- Lima, D. S., & Ventura, D. F. (2023). A review of experimental task design in psychophysical eye tracking research. Frontiers in Human Neuroscience, 17, 1112769. [https://doi.org/10.3389/fnhum.2023.1112769​]
+- Clifton, C., Staub, A., & Rayner, K. (2007). Eye movements in reading words and sentences. In R. P. G. van Gompel, M. H. Fischer, W. S. Murray, & R. L. Hill (Eds.), Eye movements: A window on mind and brain (pp. 341–372). Oxford: Elsevier. [https://doi.org/10.1016/B978-008044980-7/50017-3]
+- Glaholt, M. G., & Reingold, E. M. (2011). Eye movement monitoring as a process tracing methodology in decision making research. Journal of Neuroscience, Psychology, and Economics, 4(2), 125–146. [https://doi.org/10.1037/a0020692]
+- Tobii & EyeLink Software Documentation – Guides for setting up and analyzing eye-tracking experiments [https://drive.google.com/file/d/1n3s-nl049pP28CUY9F3YnFO_ssdPwUAT/view?usp=sharing].
 
