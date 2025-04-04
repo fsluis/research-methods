@@ -51,11 +51,11 @@ Reflect critically on your process and the method as a whole: What worked well? 
 
 We will organize a poster walk where each group presents their method and discusses it with classmates. Be prepared to explain what you did and answer questions.
 
-It is good practice to clearly document all choices made and actions taken during the different phases. If your poster does not allow space for these details, consider providing a supplementary way to share them. This could be a short handout, an annotated diagram or screenshot, or even a link (e.g., QR code) to a shared Google Doc describing your workflow. The goal is to make your process transparent and replicable, so that another group could realistically reproduce what you did. As part of your reflection, consider whether such replication would likely lead to similar results, and what factors might influence this.
+It is good practice to clearly document all choices made and actions taken during the different phases. If your poster does not allow space for these details, consider providing a supplementary way to share them. This could be a short handout, an annotated diagram or screenshot, or even a link (e.g., QR code) to a shared Google Doc describing your study protocol. The goal is to make your process transparent and replicable, so that another group could realistically reproduce what you did. As part of your reflection, consider whether such replication would likely lead to similar results, and what factors might influence this.
 
 ## Submission
 
-Your poster will be submitted to Absalon and shared with the class as a learning resource.
+(**Updated**) Please submit a physical poster by displaying and presenting it in the DigiLabs space on Friday. Any accompanying digital materials or appendices can be shared with the class via Absalon as learning resources. 
 
 ---
 
