@@ -74,8 +74,9 @@ You can use R with either RStudio or online via ERDA. Instructions for both foll
 Note: Remember to work in an RScript, not in the console!
 
 ## Getting ready in RStudio
+First, install R and RStudio following this [link](https://posit.co/download/rstudio-desktop/). 
 
-Install and load the necessary libraries for this session. You can read more about libraries [here](https://moderndive.com/v2/getting-started.html). The `install.packages` command installs a package, you only need to run this once (until you re-install or upgrade R). The `library` command needs to run everytime you start a new R session.
+Once R and RStudio have been installed, the next step is to install and load libraries that we will be using this session. You can read more about libraries [here](https://moderndive.com/v2/getting-started.html). The `install.packages` command installs a package, you only need to run this once (until you re-install or upgrade R). The `library` command needs to run everytime you start a new R session.
 
 - Here is an example for readxl, a library needed to read Excel files:
 
@@ -107,6 +108,8 @@ glimpse(questionnaire_data)
 The function glimpse is designed to give you an overview of the data set. It gives basic info on the data set and allows a peak at the various columns and types of variables and values they hold.
 
 You should now also see the data in the Environment tab. In RStudio, click on it and see what happens.
+
+Also, from here on: Open a new file (File -> New File -> R Script) and put the working (!) code in there. You can run code line-by-line from this file by typing CMD+Enter or CTRL+ENTER depending on your platform. Consider this like a notebook where you keep track of all the commands that worked, allowing you also to easily rerun them whenever you need to.
 
 ## Missing data
 Missing values in R are represented by NA. We can use the is.na() function to find missing values:
