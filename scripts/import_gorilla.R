@@ -1,5 +1,6 @@
-year = '2025'
-# export in 'wide' format from Gorilla (only applies to questionnaire data)
+year = '2026'
+# export in 'wide' ('short form') format from Gorilla (only applies to questionnaire data)
+# since 2026, set column headers to 'name' only, not 'name + id' > didn't work...
 
 # Load necessary libraries
 library(tidyverse)  # includes dplyr, tidyr, readr, etc.
@@ -60,6 +61,8 @@ quest_df <- read_csv(glue::glue("gorilla_data_{year}/data_exp_31463-v6_questionn
 
 library(dplyr)
 
+# dropping all leading questionnaire IDs (since 2026)
+colnames(quest_df) <- gsub("^questionnaire-fopf-", "", colnames(quest_df))
 # There's some old string-answers in this variable
 quest_df <- quest_df %>%
   mutate(ComputerUseHours = case_when(
