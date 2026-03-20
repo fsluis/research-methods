@@ -59,6 +59,8 @@ Todo: Add icons for uploading file and for opening new RScript + run / source bu
 
 # Getting started
 
+You can use R with either RStudio or online via ERDA. Instructions for both follow:
+
 ## Getting started with ERDA
 
 1. Open and log in to [ERDA](https://erda.dk) with your KU mail
