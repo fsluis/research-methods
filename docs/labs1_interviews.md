@@ -1,11 +1,13 @@
 ---
-title: "INFOSHEET: INTERVIEWS"
+title: "INFODOC: INTERVIEWS"
 author: "Frans van der Sluis and Mara Gunther"
-date: "2025"
+date: "2026"
 output: 
   html_document:
     css: labs_styles.css
 ---
+
+# INFODOC: INTERVIEWS
 
 ## Introduction
 Semi-structured interviews are qualitative in nature and rely on asking questions within a predetermined thematic framework. They are the most widely employed method in qualitative research, acting as an exploratory tool in marketing, social science, survey methodology, and other research fields.
@@ -107,5 +109,3 @@ Derges, J., Bould, H., Gooberman-Hill, R., Moran, P., Linton, M., Rifkin-Zybutz,
 - Braun, V., & Clarke, V. (2006). Using thematic analysis in psychology. Qualitative Research in Psychology, 3(2), 77–101. https://doi.org/10.1191/1478088706qp063oa
 - Conrad, L. Y., & Tucker, V. M. (2019). Making it tangible: Hybrid card sorting within qualitative interviews. Journal of Documentation, 75(2), 397–416. https://doi.org/10.1108/JD-06-2018-0091
 - Small, M. L., & Calarco, J. M. (2022). Qualitative Literacy: A Guide to Evaluating Ethnographic and Interview Research (1st ed.). University of California Press. [https://doi.org/10.2307/j.ctv2vr9c4x](https://doi.org/10.2307/j.ctv2vr9c4x)
-
-

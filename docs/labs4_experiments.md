@@ -1,10 +1,10 @@
 ---
-title: "INFOSHEET: EXPERIMENTAL STUDIES IN LAB SETTINGS"
+title: "INFODOC: EXPERIMENTAL STUDIES IN LAB SETTINGS"
 author: "KU DigiLabs"
-date: "2025"
+date: "2026"
 ---
 
-# INFOSHEET: EXPERIMENTS
+# INFODOC: EXPERIMENTS
 
 ## Introduction
 Experimental research is a quantitative method designed to establish causal relationships by systematically manipulating one or more independent variables while controlling extraneous factors. Experiments are widely used in HCI, psychology, and behavioral sciences, where researchers investigate the effects of interventions on human behavior.

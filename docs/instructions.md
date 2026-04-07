@@ -14,7 +14,7 @@ You will be placed in groups of approximately 4–6 students. Each group will fo
 
 ### 2. Method Selection
 
-Each group will explore one research method. Examples include interviews, conversation analysis, experiments, eye tracking, and content analysis. Each method is described in an **infosheet**, available on Absalon. Please read your method’s infosheet carefully. It includes resources, tools, tips, and reading suggestions to help you get started.
+Each group will explore one research method. Examples include interviews, conversation analysis, experiments, eye tracking, and content analysis. Each method is described in an **infodoc**, available on Absalon. Please read your method’s infodoc carefully. It includes resources, tools, tips, and reading suggestions to help you get started.
 
 ---
 
@@ -32,7 +32,7 @@ Test the method by collecting a small sample of data. You can use a real partici
 
 ### Phase 3: Data Analysis and Reporting
 
-Analyze your collected data to the extent that it makes sense for your method. This could involve coding, categorization, visualization, interpretation, or software-based analysis. All methods are expected to use some form of statistics, the individual infosheets give suggestions as to what might be applicable.
+Analyze your collected data to the extent that it makes sense for your method. This could involve coding, categorization, visualization, interpretation, or software-based analysis. All methods are expected to use some form of statistics, the individual infodocs give suggestions as to what might be applicable.
 
 ## Poster Presentation
 

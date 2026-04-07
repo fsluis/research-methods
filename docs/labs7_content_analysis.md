@@ -1,14 +1,16 @@
 ---
-title: "INFOSHEET: CONTENT ANALYSIS USING R"
+title: "INFODOC: CONTENT ANALYSIS USING R"
 author: "KU DigiLabs"
-date: "2025"
+date: "2026"
 ---
+
+# INFODOC: CONTENT ANALYSIS USING R
 
 
 
 ## Introduction
 
-Content analysis is a systematic method for interpreting text, images, or media to identify patterns, themes, and meanings. It is widely applied in social sciences, humanities, marketing, and education. With R, students and researchers can perform both manual and automated content analysis at scale, combining reproducibility with interpretability. This infosheet introduces key steps for content analysis using R, from designing a study to analyzing and visualizing results.
+Content analysis is a systematic method for interpreting text, images, or media to identify patterns, themes, and meanings. It is widely applied in social sciences, humanities, marketing, and education. With R, students and researchers can perform both manual and automated content analysis at scale, combining reproducibility with interpretability. This infodoc introduces key steps for content analysis using R, from designing a study to analyzing and visualizing results.
 
 ---
 
@@ -29,7 +31,7 @@ Choose between analyzing manifest content (surface-level features like word freq
 
 For deductive approaches, create a codebook with the different codes (labels), their definitions, and an example for each code. Being deductive, a theoretical framework should be the starting point of your codebook. Coding can be done in R or using spreadsheets and then imported into R for analysis.
 
-Even though the focus of this infosheet is on online content, content analysis also often complements surveys or experiments. For example, by analyzing open-ended survey responses or thematically coding interview-derived transcripts. 
+Even though the focus of this infodoc is on online content, content analysis also often complements surveys or experiments. For example, by analyzing open-ended survey responses or thematically coding interview-derived transcripts. 
 
 ---
 
@@ -146,4 +148,3 @@ This use case illustrates the practical application of sentiment analysis in fin
 - AoIR Ethics Guidelines: [https://aoir.org/reports/ethics3.pdf]
 - Awesome Public Datasets: A curated list of high-quality open datasets across various domains. Available: [https://github.com/awesomedata/awesome-public-datasets]
 - Open Data DK: A portal providing access to Danish public datasets. Available: [https://www.opendata.dk/]
-

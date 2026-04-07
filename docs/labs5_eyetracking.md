@@ -1,8 +1,10 @@
 ---
-title: "INFOSHEET: EYE-TRACKING IN EXPERIMENTAL RESEARCH"
+title: "INFODOC: EYE-TRACKING"
 author: "KU DigiLabs"
-date: "2025"
+date: "2026"
 ---
+
+# INFODOC: EYE-TRACKING
 
 ## Introduction
 Eye-tracking is a method used to study visual attention, cognitive load, and decision-making by recording eye movements and gaze patterns. It is widely applied in psychology, cognitive science, human-computer interaction (HCI), UX research, and marketing. By analyzing fixations, saccades, and pupil dilation, researchers gain insights into how people process visual information and interact with their environment. The eye-mind hypothesis (Just & Carpenter, 1976) suggests that gaze position reflects cognitive processing in real time, making eye-tracking a powerful tool for studying perception and behavior.
@@ -91,4 +93,3 @@ This study demonstrates that eye-tracking can uncover subtle indicators of both 
 - Clifton, C., Staub, A., & Rayner, K. (2007). Eye movements in reading words and sentences. In R. P. G. van Gompel, M. H. Fischer, W. S. Murray, & R. L. Hill (Eds.), Eye movements: A window on mind and brain (pp. 341–372). Oxford: Elsevier. [https://doi.org/10.1016/B978-008044980-7/50017-3]
 - Glaholt, M. G., & Reingold, E. M. (2011). Eye movement monitoring as a process tracing methodology in decision making research. Journal of Neuroscience, Psychology, and Economics, 4(2), 125–146. [https://doi.org/10.1037/a0020692]
 - Tobii & EyeLink Software Documentation – Guides for setting up and analyzing eye-tracking experiments [https://drive.google.com/file/d/1n3s-nl049pP28CUY9F3YnFO_ssdPwUAT/view?usp=sharing].
-

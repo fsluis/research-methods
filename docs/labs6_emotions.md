@@ -1,10 +1,11 @@
 ---
-title: "INFOSHEET: Emotion Recognition in Lab Studies"
+title: "INFODOC: Emotion Recognition in Lab Studies"
 author: "KU DigiLabs"
-date: "2025"
+date: "2026"
 ---
 
-# Emotion Recognition in Lab Studies
+
+# INFODOC: EMOTION RECOGNITION
 
 ## Introduction
 Emotion recognition in laboratory research involves detecting and interpreting participants' emotional states through observable signals like facial expressions and physiological responses. This approach plays a growing role in fields such as psychology, human-computer interaction (HCI), affective computing, and communication research. In controlled lab environments, researchers can collect data on participants' reactions to stimuli such as images, video clips, tasks, or social interactions, using tools like facial analysis software and biosignal sensors.
@@ -18,12 +19,22 @@ A successful emotion recognition study begins with a clear research question and
 
 An important early design choice is whether participants will experience *passive* or *active* stimuli. Passive designs involve participants observing emotional content, such as videos, images, or music, without responding. Active designs involve participation, such as performing tasks or making decisions under emotionally charged conditions. Passive designs offer more control and are recommended for early-stage or student projects.
 
+For most student projects, the best setup is a simple one: present stimuli in PowerPoint, Keynote, a standard video player, or similar presentation software, and collect self-report responses on paper after each trial. This is usually more robust than building a complex online experiment and is often sufficient for a small lab study.
+
 Design your study such that you measure participants' baseline in the beginning.
 Before presenting any emotional stimuli, researchers should record a period of neutral or resting data (e.g., two minutes of calm breathing) to establish each participant’s physiological baseline. This enables meaningful comparison of later responses. A commonly used baseline is an aquatic video (Piferi, 2000).
 
 Another key consideration is task structure. Stimuli should be presented in a way that avoids participant fatigue or emotional habituation. Use randomized or counterbalanced orders where possible, especially when comparing emotional conditions. Include brief breaks between stimulus blocks to maintain participant engagement and ensure consistent data quality.
 
-Include self-report measures in your study design as well. Participants should be asked to rate their emotions after each trial using standardized tools such as the Self-Assessment Manikin (SAM) for valence and arousal (Bradley, 1994), or short-form Positive and Negative Affect Schedule (PANAS) for general affect (Watson, 1988). These ratings complement physiological and facial data and help validate the emotional impact of your stimuli.
+Include self-report measures in your study design as well. Participants should be asked to rate their emotions after each trial using standardized tools such as the Self-Assessment Manikin (SAM) for valence and arousal (Bradley, 1994), or short-form Positive and Negative Affect Scale (PANAS) for general affect (Watson, 1988). These ratings complement physiological and facial data and help validate the emotional impact of your stimuli.
+
+Recommended beginner setup:
+- Passive stimuli such as short film clips, still images, or audio clips
+- Stimulus presentation in PowerPoint, Keynote, or a regular media player
+- Printed SAM or PANAS sheets for trial-by-trial ratings
+- EDA and BVP recorded in OpenSignals
+- A simple synchronization marker such as a light cue, clap, or manually logged trial onset
+- Two or three stimulus conditions rather than a complex factorial design
 
 
 ## Data Sampling and Collection
@@ -35,7 +46,13 @@ Facial expression analysis can be carried out using webcam recordings and softwa
 
 Physiological data offers complementary insights. EDA reflects general emotional arousal via skin conductance. ECG and heart rate data provide insight into sympathetic nervous system activity and stress responses.
 
-To synchronize these data streams with stimulus presentation, students should use either software triggers (e.g., from PsychoPy or E-Prime) or hardware triggers (e.g., light or sound markers visible in video and biosignal recordings). Always pilot the synchronization setup to ensure all data streams are aligned.
+For student projects, do not overcomplicate the stimulus setup. A slide deck or media player is often enough, as long as trial order and timing are documented carefully. To synchronize biosignals with stimulus presentation, students can use either software triggers when available or simple hardware/manual markers such as a light flash, clap, or written timestamp visible across recordings. Always pilot the synchronization setup to ensure all data streams are aligned.
+
+At KU DigiLabs, a practical default workflow is:
+- Present the stimulus on one screen using PowerPoint, Keynote, or a video player
+- Record physiological data in OpenSignals
+- Collect self-report ratings on printed sheets
+- Keep a simple trial log with participant ID, condition, and trial onset/offset times
 
 For an overview of different signals and tips about their measurement, consult Van den Broek (2009).
 
@@ -117,4 +134,3 @@ The dataset provides a rich resource for emotion analysis, capturing both self-r
 ### Relevance:
 
 This study offers a valuable dataset for researchers interested in developing and validating emotion recognition models. It shows how a different evaluation method, by self-annotation, combined with high-quality physiological recordings, enables the exploration of the dynamic nature of emotional experiences and their physiological correlates.
-

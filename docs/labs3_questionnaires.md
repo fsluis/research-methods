@@ -1,13 +1,13 @@
 ---
-title: "INFOSHEET: QUESTIONNAIRES"
+title: "INFODOC: QUESTIONNAIRES"
 author: "Frans van der Sluis and Mara Gunther"
-date: "2025"
+date: "2026"
 output: 
   html_document:
     css: labs_styles.css
 ---
 
-# INFOSHEET: QUESTIONNAIRES
+# INFODOC: QUESTIONNAIRES
 
 ## Introduction
 Surveys and questionnaires are widely used quantitative research methods for collecting structured data from a sample of participants. They typically involve asking a sample of people a set of prepared questions in order to gather data about their opinions and behavior. While the terms are often used interchangeably, a questionnaire refers specifically to the set of written questions, while a survey encompasses the broader process of data collection, including sampling and analysis.
@@ -86,4 +86,3 @@ The study revealed a progressive decline from ethical intention to actual search
 - **Bryman, A.** (2012). *Social Research Methods* (4th ed.). Oxford University Press. (Chapters **10, 11**) – Covers survey design and question formulation.  
 - **Gorilla.sc** – An online experimental platform for survey-based research, offering **randomization, vignettes, and within-subjects designs**. Learn more: [https://gorilla.sc](https://gorilla.sc)  
 - **SurveyXact** – Institutional access for designing and distributing basic surveys. See: [SurveyXact](https://wayf.survey-xact.dk) and their [video guides](https://rambollxact.com/videoguides).
-
