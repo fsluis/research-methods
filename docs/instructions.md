@@ -40,10 +40,10 @@ At the end of Lab Weeks, your group will present your findings and reflections i
 
 Your poster should include the following:
 
-- A short **introduction** to the method
-- A description of your **test or mini-study**, organized around the phases: study design, data sampling and collection, and data analysis and results
-- Reflections on **strengths, limitations, and lessons learned**
-- A **critical reflection** on the method’s validity, reliability, and ethical considerations, supported by relevant literature
+- A short introduction to the method
+- A description of your test or mini-study* organized around the phases: study design, data sampling and collection, and data analysis and results
+- Reflections on strengths, limitations, and lessons learned
+- A critical reflection on the method’s validity, reliability, and ethical considerations, supported by relevant literature
 
 You are encouraged to include visuals, mock-ups of your data, screenshots, or quotes from your process. The poster does not need to comprehensively report “results” in the traditional sense — the emphasis is on practical understanding.
 
@@ -51,11 +51,11 @@ Reflect critically on your process and the method as a whole: What worked well? 
 
 We will organize a poster walk where each group presents their method and discusses it with classmates. Be prepared to explain what you did and answer questions.
 
-It is good practice to clearly document all choices made and actions taken during the different phases. If your poster does not allow space for these details, consider providing a supplementary way to share them. This could be a short handout, an annotated diagram or screenshot, or even a link (e.g., QR code) to a shared Google Doc describing your study protocol. The goal is to make your process transparent and replicable, so that another group could realistically reproduce what you did. As part of your reflection, consider whether such replication would likely lead to similar results, and what factors might influence this.
+It is good practice to clearly document all choices made and actions taken during the different phases. As your poster likely does not allow space for these details, we recommend providing a supplementary way to share them. This could be a short handout, an annotated diagram or screenshot, or a link (e.g., QR code) to a shared Google Doc describing your study protocol. The goal is to make your process transparent and replicable, so that another group could realistically reproduce what you did. As part of your reflection, consider whether such replication would likely lead to similar results, and what factors might influence this.
 
 ## Submission
 
-(**Updated**) Please submit a physical poster by displaying and presenting it in the DigiLabs space on Friday. Any accompanying digital materials or appendices can be shared with the class via Absalon as learning resources. 
+Please submit a physical poster by displaying and presenting it in the DigiLabs space on Wednesday. Any accompanying digital materials or appendices can be shared with the class via Absalon as learning resources. 
 
 ---
 

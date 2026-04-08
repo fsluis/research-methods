@@ -9,7 +9,7 @@ Welcome to the repository for the R exercises used in the **Research Methods and
 This repository provides a collection of R-based exercises designed to give students hands-on experience with **descriptive statistics** and **inferential statistics**.
 
 The exercises are based on a keyboard typing experiment originally developed by MacKenzie (see [sources](#sources)). The experiment, which evaluates text entry performance on two keyboard layouts (OPTI and QWERTY), is detailed [here](http://www.yorku.ca/mack/cascon2007.html) and discussed in the book [Human-Computer Interaction (2013)](https://www.sciencedirect.com/book/9780124058651/human-computer-interaction). The experiment was implemented using [Gorilla.sc](https://gorilla.sc/).
- 
+
 ## Repository Structure
 📂 **docs/** — Contains formatted HTML files for public viewing. The website is hosted at:  
 🔗 **[fsluis.github.io/research-methods](https://fsluis.github.io/research-methods/)**  
