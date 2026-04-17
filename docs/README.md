@@ -31,12 +31,10 @@ You can access the following lab exercises directly through your browser:
 
 You can access the following lab infodocs directly through your browser:
 
-## Instructions
-
 - [Lab Instructions](https://fsluis.github.io/research-methods/instructions.html)
 - [Lab 1: Interviews](https://fsluis.github.io/research-methods/labs1_interviews.html)
 - [Lab 2: Human-LLM Conversations](https://fsluis.github.io/research-methods/labs2_llm_conversations.html)
-- [Lab 3: Questionnaires](https://fsluis.github.io/research-methods/labs3_questionnaires.html)
+- [Lab 3: Surveys](https://fsluis.github.io/research-methods/labs3_surveys.html)
 - [Lab 4: Experiments](https://fsluis.github.io/research-methods/labs4_experiments.html)
 - [Lab 5: Eye-Tracking](https://fsluis.github.io/research-methods/labs5_eyetracking.html)
 - [Lab 6: Emotion Recognition](https://fsluis.github.io/research-methods/labs6_emotions.html)

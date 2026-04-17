@@ -28,13 +28,12 @@ Another key consideration is task structure. Stimuli should be presented in a wa
 
 Include self-report measures in your study design as well. Participants should be asked to rate their emotions after each trial using standardized tools such as the Self-Assessment Manikin (SAM) for valence and arousal (Bradley, 1994), or short-form Positive and Negative Affect Scale (PANAS) for general affect (Watson, 1988). These ratings complement physiological and facial data and help validate the emotional impact of your stimuli.
 
-Recommended beginner setup:
+A possible beginner setup:
 - Passive stimuli such as short film clips, still images, or audio clips
 - Stimulus presentation in PowerPoint, Keynote, or a regular media player
 - Printed SAM or PANAS sheets for trial-by-trial ratings
 - EDA and BVP recorded in OpenSignals
 - A simple synchronization marker such as a light cue, clap, or manually logged trial onset
-- Two or three stimulus conditions rather than a complex factorial design
 
 
 ## Data Sampling and Collection

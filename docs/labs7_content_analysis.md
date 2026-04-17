@@ -113,10 +113,6 @@ These judgments reflected not only content characteristics but also situated und
 ### Relevance  
 This use case demonstrates how researchers can use manual coding with structured analyses in R to evaluate online discussions and user-generated content.
 
-### Use Case: Emotion and Framing in Retail Texts
-
-A student project examined emotional appeals in online product descriptions by Danish and international retailers. They scraped ~500 product pages using `rvest`, tokenized text using `tidytext`, and analyzed sentiment with the `nrc` lexicon. The study found that Danish brands emphasized social responsibility while international retailers used excitement and urgency. Combining lexicon-based scoring with keyword-in-context interpretation allowed for both quantitative insights and qualitative nuance.
-
 ---
 
 
